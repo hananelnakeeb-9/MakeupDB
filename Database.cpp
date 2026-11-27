@@ -1,6 +1,5 @@
 
 #include "Database.h"
-
 #include "HashIndex.h"
 #include "AVLIndex.h"
 
@@ -28,8 +27,6 @@ std::string Database::normalize(const std::string& value) const {
     return result;
 }
 
-
-// Check whether a field name is supported.
 bool Database::isValidField(const std::string& field) const {
     std::string name = normalize(field);
 
@@ -44,8 +41,6 @@ bool Database::isValidField(const std::string& field) const {
            name == "shadecount";
 }
 
-
-// Rating is optional in the dataset.
 bool Database::isMissingValue(
     const Product& product,
     const std::string& field
@@ -53,69 +48,54 @@ bool Database::isMissingValue(
     return normalize(field) == "rating" && !product.hasRating;
 }
 
-
-// Get a product's value as an IndexValue.
 IndexValue Database::getFieldValue(
     const Product& product,
     const std::string& field
     ) const {
     std::string name = normalize(field);
 
-    if (name == "id") {
+    if (name == "id")
         return static_cast<double>(product.id);
-    }
 
-    if (name == "name") {
+    if (name == "name")
         return product.name;
-    }
 
-    if (name == "brand") {
+    if (name == "brand")
         return product.brand;
-    }
 
-    if (name == "category") {
+    if (name == "category")
         return product.category;
-    }
 
-    if (name == "producttype") {
+    if (name == "producttype")
         return product.productType;
-    }
 
-    if (name == "price") {
+    if (name == "price")
         return product.price;
-    }
 
-    if (name == "currency") {
+    if (name == "currency")
         return product.currency;
-    }
 
-    if (name == "rating") {
+    if (name == "rating")
         return product.rating;
-    }
 
-    if (name == "shadecount") {
+    if (name == "shadecount")
         return static_cast<double>(product.shadeCount);
-    }
 
     return std::string("");
 }
 
-
-// Find an active index for a field.
 Database::ActiveIndex* Database::findIndex(
     const std::string& field
     ) {
     std::string name = normalize(field);
 
     for (ActiveIndex& active : activeIndexes) {
-        if (active.field == name) {
+        if (active.field == name)
             return &active;
-        }
     }
 
     return nullptr;
 }
-
 
 const Database::ActiveIndex* Database::findIndex(
     const std::string& field
@@ -123,14 +103,12 @@ const Database::ActiveIndex* Database::findIndex(
     std::string name = normalize(field);
 
     for (const ActiveIndex& active : activeIndexes) {
-        if (active.field == name) {
+        if (active.field == name)
             return &active;
-        }
     }
 
     return nullptr;
 }
-
 
 // ==========================================
 // INDEX SYNCHRONIZATION
@@ -138,49 +116,35 @@ const Database::ActiveIndex* Database::findIndex(
 
 void Database::insertIntoIndexes(const Product& product) {
     for (ActiveIndex& active : activeIndexes) {
-
-        if (isMissingValue(product, active.field)) {
+        if (isMissingValue(product, active.field))
             continue;
-        }
 
         IndexValue value = getFieldValue(product, active.field);
-
         active.index->insert(value, product.id);
     }
 }
 
-
 void Database::removeFromIndexes(const Product& product) {
     for (ActiveIndex& active : activeIndexes) {
-
-        if (isMissingValue(product, active.field)) {
+        if (isMissingValue(product, active.field))
             continue;
-        }
 
         IndexValue value = getFieldValue(product, active.field);
-
         active.index->remove(value, product.id);
     }
 }
 
-
-// Rebuild all active indexes after loading a new dataset.
 void Database::rebuildIndexes() {
     for (ActiveIndex& active : activeIndexes) {
-
-        if (active.type == "hash") {
+        if (active.type == "hash")
             active.index = std::make_unique<HashIndex>();
-        }
-        else {
+        else
             active.index = std::make_unique<AVLIndex>();
-        }
     }
 
-    for (const Product& product : products) {
+    for (const Product& product : products)
         insertIntoIndexes(product);
-    }
 }
-
 
 // ==========================================
 // LOAD AND SAVE
@@ -195,21 +159,17 @@ bool Database::loadFromFile(const std::string& filename) {
     }
 
     std::vector<Product> loadedProducts;
-
     std::string line;
 
-    // Skip the header.
     std::getline(file, line);
 
     try {
         while (std::getline(file, line)) {
-            if (line.empty()) {
+            if (line.empty())
                 continue;
-            }
 
             std::stringstream ss(line);
             std::string field;
-
             Product p{};
 
             std::getline(ss, field, '\t');
@@ -240,15 +200,11 @@ bool Database::loadFromFile(const std::string& filename) {
         return false;
     }
 
-    // Replace the old records only after successful loading.
     products = std::move(loadedProducts);
-
-    // Rebuild every active index using the new records.
     rebuildIndexes();
 
     return true;
 }
-
 
 bool Database::saveToFile(const std::string& filename) const {
     std::ofstream file(filename);
@@ -270,19 +226,16 @@ bool Database::saveToFile(const std::string& filename) const {
              << std::setprecision(15) << p.price << '\t'
              << p.currency << '\t';
 
-        if (p.hasRating) {
+        if (p.hasRating)
             file << p.rating;
-        }
-        else {
+        else
             file << "NA";
-        }
 
         file << '\t' << p.shadeCount << '\n';
     }
 
     return true;
 }
-
 
 // ==========================================
 // BASIC DATABASE OPERATIONS
@@ -292,31 +245,28 @@ int Database::getProductCount() const {
     return static_cast<int>(products.size());
 }
 
+const std::vector<Product>& Database::getProducts() const {
+    return products;
+}
 
 Product* Database::findProduct(int id) {
     for (Product& product : products) {
-        if (product.id == id) {
+        if (product.id == id)
             return &product;
-        }
     }
 
     return nullptr;
 }
 
-
 bool Database::addProduct(const Product& product) {
-    if (findProduct(product.id) != nullptr) {
+    if (findProduct(product.id) != nullptr)
         return false;
-    }
 
     products.push_back(product);
-
-    // Update all active indexes.
     insertIntoIndexes(products.back());
 
     return true;
 }
-
 
 bool Database::updateProduct(
     int id,
@@ -324,34 +274,24 @@ bool Database::updateProduct(
     ) {
     Product* existing = findProduct(id);
 
-    if (existing == nullptr) {
+    if (existing == nullptr)
         return false;
-    }
 
-    // Remove the old values from every index.
     removeFromIndexes(*existing);
 
-    // Replace the product but preserve its original ID.
     *existing = updatedProduct;
     existing->id = id;
 
-    // Insert the new values into every index.
     insertIntoIndexes(*existing);
 
     return true;
 }
 
-
 bool Database::deleteProduct(int id) {
     for (int i = 0; i < static_cast<int>(products.size()); i++) {
-
         if (products[i].id == id) {
-
-            // Remove the old values from every index first.
             removeFromIndexes(products[i]);
-
             products.erase(products.begin() + i);
-
             return true;
         }
     }
@@ -359,20 +299,17 @@ bool Database::deleteProduct(int id) {
     return false;
 }
 
-
 void Database::displayProducts(int limit) const {
     int count = 0;
 
     for (const Product& p : products) {
-        if (count >= limit) {
+        if (count >= limit)
             break;
-        }
 
         std::cout << "ID: " << p.id
                   << " | Name: " << p.name
                   << " | Brand: " << p.brand
-                  << " | Price: " << p.price
-                  << " " << p.currency
+                  << " | Price: " << p.price << " " << p.currency
                   << " | Shades: " << p.shadeCount
                   << '\n';
 
@@ -383,7 +320,6 @@ void Database::displayProducts(int limit) const {
               << " of " << products.size()
               << " products.\n";
 }
-
 
 // ==========================================
 // F6: CREATE INDEX
@@ -413,27 +349,19 @@ bool Database::createIndex(
     }
 
     ActiveIndex active;
-
     active.field = name;
     active.type = type;
 
-    if (type == "hash") {
+    if (type == "hash")
         active.index = std::make_unique<HashIndex>();
-    }
-    else {
+    else
         active.index = std::make_unique<AVLIndex>();
-    }
 
-    // Populate the new index with existing products.
     for (const Product& product : products) {
-
-        if (isMissingValue(product, name)) {
+        if (isMissingValue(product, name))
             continue;
-        }
 
-        IndexValue value = getFieldValue(product, name);
-
-        active.index->insert(value, product.id);
+        active.index->insert(getFieldValue(product, name), product.id);
     }
 
     activeIndexes.push_back(std::move(active));
@@ -444,7 +372,6 @@ bool Database::createIndex(
     return true;
 }
 
-
 // ==========================================
 // F6: REMOVE INDEX
 // ==========================================
@@ -452,27 +379,18 @@ bool Database::createIndex(
 bool Database::removeIndex(const std::string& field) {
     std::string name = normalize(field);
 
-    for (int i = 0;
-         i < static_cast<int>(activeIndexes.size());
-         i++) {
-
+    for (int i = 0; i < static_cast<int>(activeIndexes.size()); i++) {
         if (activeIndexes[i].field == name) {
-
             activeIndexes.erase(activeIndexes.begin() + i);
 
-            std::cout << "Removed index on "
-                      << name << ".\n";
-
+            std::cout << "Removed index on " << name << ".\n";
             return true;
         }
     }
 
-    std::cout << "Error: No index exists on "
-              << name << ".\n";
-
+    std::cout << "Error: No index exists on " << name << ".\n";
     return false;
 }
-
 
 // ==========================================
 // F6: DISPLAY ACTIVE INDEXES
@@ -494,14 +412,12 @@ void Database::displayIndexes() const {
     }
 
     std::cout << "Total active indexes: "
-              << activeIndexes.size() << "\n";
+              << activeIndexes.size() << '\n';
 }
-
 
 int Database::getActiveIndexCount() const {
     return static_cast<int>(activeIndexes.size());
 }
-
 
 // ==========================================
 // F6: EXACT SEARCH
@@ -514,7 +430,6 @@ std::vector<int> Database::searchExact(
     std::string& method
     ) const {
     std::vector<int> results;
-
     std::string name = normalize(field);
 
     usedIndex = false;
@@ -526,35 +441,25 @@ std::vector<int> Database::searchExact(
 
     const ActiveIndex* active = findIndex(name);
 
-    // Use the index if one exists for this field.
     if (active != nullptr) {
         results = active->index->exactSearch(value);
-
         usedIndex = true;
         method = active->index->getIndexType() + " index";
-
         return results;
     }
 
-    // Otherwise, perform a linear scan.
     method = "Linear scan";
 
     for (const Product& product : products) {
-
-        if (isMissingValue(product, name)) {
+        if (isMissingValue(product, name))
             continue;
-        }
 
-        IndexValue productValue = getFieldValue(product, name);
-
-        if (productValue == value) {
+        if (getFieldValue(product, name) == value)
             results.push_back(product.id);
-        }
     }
 
     return results;
 }
-
 
 // ==========================================
 // F6: NUMERIC RANGE SEARCH
@@ -569,7 +474,6 @@ std::vector<int> Database::searchRange(
     const std::string& currency
     ) const {
     std::vector<int> results;
-
     std::string name = normalize(field);
 
     usedIndex = false;
@@ -583,42 +487,33 @@ std::vector<int> Database::searchRange(
         method = "Invalid range";
         return results;
     }
+
     if (name == "price" &&
         (currency.empty() || normalize(currency) == "unknown")) {
         method = "Price range requires a known currency";
         return results;
     }
 
-    // Range search is supported only for numeric fields.
-    if (name != "id" &&
-        name != "price" &&
-        name != "rating" &&
-        name != "shadecount") {
-
+    if (name != "id" && name != "price" &&
+        name != "rating" && name != "shadecount") {
         method = "Range search requires a numeric field";
         return results;
     }
 
     const ActiveIndex* active = findIndex(name);
 
-    // Use the index only if it supports range searching.
-    if (active != nullptr &&
-        active->index->supportsRangeSearch()) {
-
+    if (active != nullptr && active->index->supportsRangeSearch()) {
         std::vector<int> indexedResults =
             active->index->rangeSearch(minimum, maximum);
 
         if (name == "price") {
             for (const Product& product : products) {
-                if (normalize(product.currency) != normalize(currency)) {
+                if (normalize(product.currency) != normalize(currency))
                     continue;
-                }
 
-                if (std::find(
-                        indexedResults.begin(),
-                        indexedResults.end(),
-                        product.id
-                        ) != indexedResults.end()) {
+                if (std::find(indexedResults.begin(),
+                              indexedResults.end(),
+                              product.id) != indexedResults.end()) {
                     results.push_back(product.id);
                 }
             }
@@ -629,27 +524,23 @@ std::vector<int> Database::searchRange(
 
         usedIndex = true;
         method = active->index->getIndexType() + " index";
-
         return results;
     }
 
-    // Otherwise, use a linear scan.
     method = "Linear scan";
 
-    // Linear scan
     for (const Product& product : products) {
-
-        // If searching prices, only compare products with the requested currency
-        if (name == "price" &&
-            normalize(product.currency) != normalize(currency)) {
+        if (isMissingValue(product, name))
             continue;
-        }
+
+        if (name == "price" &&
+            normalize(product.currency) != normalize(currency))
+            continue;
 
         double value = std::get<double>(getFieldValue(product, name));
 
-        if (value >= minimum && value <= maximum) {
+        if (value >= minimum && value <= maximum)
             results.push_back(product.id);
-        }
     }
 
     return results;

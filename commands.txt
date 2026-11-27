@@ -1,0 +1,54 @@
+# MAKEUP DATABASE - F7 COMMAND TESTS
+HELP
+DISPLAY 5
+COUNT ALL
+
+# Exact searches
+EXACT brand colourpop
+EXACT name "Lippie Pencil"
+
+# Numeric ranges
+RANGE price 5 15 CAD
+RANGE rating 3 5
+
+# Sorting
+SORT price ASC CAD
+SORT rating DESC
+SORT name ASC
+
+# Top and bottom K
+TOP rating 5
+BOTTOM rating 5
+TOP price 5 CAD
+BOTTOM price 5 CAD
+
+# Two-field filtering
+FILTER brand colourpop AND category lipstick
+FILTER currency CAD AND brand colourpop
+
+# Statistics
+COUNT brand colourpop
+COUNT category lipstick
+AVERAGE rating brand colourpop
+AVERAGE shadeCount brand colourpop
+AVERAGE price currency CAD
+
+# Index management
+CREATE_INDEX brand HASH
+CREATE_INDEX price AVL
+SHOW_INDEXES
+EXACT brand colourpop
+REMOVE_INDEX brand
+SHOW_INDEXES
+
+# Record management
+ADD 999999 "Test Lipstick" "TestBrand" "lip" "lipstick" 9.5 CAD 1 4.5 12
+EXACT name "Test Lipstick"
+UPDATE 999999 "Updated Lipstick" "TestBrand" "lip" "lipstick" 10 CAD 1 4.8 15
+EXACT name "Updated Lipstick"
+DELETE 999999
+COUNT ALL
+
+# Save and invalid command
+SAVE
+THIS_IS_AN_INVALID_COMMAND

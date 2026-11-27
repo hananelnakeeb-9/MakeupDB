@@ -63,6 +63,7 @@ add_executable(AVLIndexTest
     Index.h
     AVLIndex.h
     AVLIndex.cpp
+    commands.txt
 )
 
 target_include_directories(AVLIndexTest
