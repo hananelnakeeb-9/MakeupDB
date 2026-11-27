@@ -1,437 +1,919 @@
-
 #include <QCoreApplication>
 #include <iostream>
-#include <limits>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
 #include <string>
 #include <vector>
-#include <variant>
 #include <cctype>
-
 #include "Database.h"
+#include "Product.h"
 #include "Index.h"
+
+using namespace std;
+
+// ==========================================
+// GENERAL HELPERS
+// ==========================================
+
+string lowerText(string value) {
+    for (char& c : value) {
+        c = static_cast<char>(
+            tolower(static_cast<unsigned char>(c))
+            );
+    }
+    return value;
+}
+
+bool isNumericField(const string& field) {
+    string f = lowerText(field);
+
+    return f == "id" ||
+           f == "price" ||
+           f == "rating" ||
+           f == "shadecount";
+}
+
+bool isValidFieldName(const string& field) {
+    string f = lowerText(field);
+
+    return f == "id" ||
+           f == "name" ||
+           f == "brand" ||
+           f == "category" ||
+           f == "producttype" ||
+           f == "price" ||
+           f == "currency" ||
+           f == "rating" ||
+           f == "shadecount";
+}
+
+bool getNumericValue(
+    const Product& p,
+    const string& field,
+    double& value
+    ) {
+    string f = lowerText(field);
+
+    if (f == "id")
+        value = p.id;
+    else if (f == "price")
+        value = p.price;
+    else if (f == "rating") {
+        if (!p.hasRating)
+            return false;
+
+        value = p.rating;
+    }
+    else if (f == "shadecount")
+        value = p.shadeCount;
+    else
+        return false;
+
+    return true;
+}
+
+string getTextValue(const Product& p, const string& field) {
+    string f = lowerText(field);
+
+    if (f == "name")
+        return p.name;
+    if (f == "brand")
+        return p.brand;
+    if (f == "category")
+        return p.category;
+    if (f == "producttype")
+        return p.productType;
+    if (f == "currency")
+        return p.currency;
+
+    return "";
+}
+
+bool matchesCondition(
+    const Product& p,
+    const string& field,
+    const string& value
+    ) {
+    if (!isValidFieldName(field))
+        return false;
+
+    if (isNumericField(field)) {
+        double expected;
+
+        try {
+            expected = stod(value);
+        }
+        catch (...) {
+            return false;
+        }
+
+        double actual;
+
+        if (!getNumericValue(p, field, actual))
+            return false;
+
+        return actual == expected;
+    }
+
+    return lowerText(getTextValue(p, field)) == lowerText(value);
+}
+
+void printProduct(const Product& p) {
+    cout << "ID: " << p.id
+         << " | Name: " << p.name
+         << " | Brand: " << p.brand
+         << " | Category: " << p.category
+         << " | Type: " << p.productType
+         << " | Price: " << p.price << " " << p.currency
+         << " | Rating: ";
+
+    if (p.hasRating)
+        cout << p.rating;
+    else
+        cout << "N/A";
+
+    cout << " | Shades: " << p.shadeCount << '\n';
+}
+
+void printProducts(const vector<Product>& products) {
+    if (products.empty()) {
+        cout << "No matching products found.\n";
+        return;
+    }
+
+    for (const Product& p : products)
+        printProduct(p);
+
+    cout << "Total: " << products.size() << " products.\n";
+}
+
+// ==========================================
+// CUSTOM INSERTION SORT
+// ==========================================
+
+void insertionSort(
+    vector<Product>& items,
+    const string& field,
+    bool ascending
+    ) {
+    for (int i = 1; i < static_cast<int>(items.size()); i++) {
+        Product current = items[i];
+        int j = i - 1;
+
+        while (j >= 0) {
+            bool shouldMove = false;
+
+            if (isNumericField(field)) {
+                double a = 0;
+                double b = 0;
+
+                bool validA = getNumericValue(items[j], field, a);
+                bool validB = getNumericValue(current, field, b);
+
+                if (!validA)
+                    shouldMove = validB;
+                else if (!validB)
+                    shouldMove = false;
+                else if (ascending)
+                    shouldMove = a > b;
+                else
+                    shouldMove = a < b;
+            }
+            else {
+                string a = lowerText(getTextValue(items[j], field));
+                string b = lowerText(getTextValue(current, field));
+
+                if (ascending)
+                    shouldMove = a > b;
+                else
+                    shouldMove = a < b;
+            }
+
+            if (!shouldMove)
+                break;
+
+            items[j + 1] = items[j];
+            j--;
+        }
+
+        items[j + 1] = current;
+    }
+}
+
+// ==========================================
+// HELP
+// ==========================================
+
+void showHelp() {
+    cout << "\n========== MAKEUP DATABASE COMMANDS ==========\n";
+
+    cout << "\nGENERAL:\n";
+    cout << "HELP\n";
+    cout << "DISPLAY [limit]\n";
+    cout << "EXIT\n";
+
+    cout << "\nSEARCH:\n";
+    cout << "EXACT field value\n";
+    cout << "Example: EXACT brand colourpop\n";
+    cout << "Example: EXACT name \"Lippie Pencil\"\n";
+
+    cout << "\nRANGE:\n";
+    cout << "RANGE numericField minimum maximum\n";
+    cout << "Example: RANGE rating 3 5\n";
+    cout << "RANGE price minimum maximum currency\n";
+    cout << "Example: RANGE price 5 15 CAD\n";
+
+    cout << "\nSORT:\n";
+    cout << "SORT field ASC\n";
+    cout << "SORT field DESC\n";
+    cout << "Example: SORT price ASC CAD\n";
+    cout << "Example: SORT name DESC\n";
+
+    cout << "\nTOP AND BOTTOM:\n";
+    cout << "TOP numericField K\n";
+    cout << "BOTTOM numericField K\n";
+    cout << "Example: TOP rating 5\n";
+    cout << "Example: BOTTOM price 10 CAD\n";
+
+    cout << "\nCONDITIONS:\n";
+    cout << "FILTER field value AND field value\n";
+    cout << "Example: FILTER brand colourpop AND category lipstick\n";
+
+    cout << "\nSTATISTICS:\n";
+    cout << "COUNT ALL\n";
+    cout << "COUNT field value\n";
+    cout << "AVERAGE numericField conditionField conditionValue\n";
+    cout << "Example: AVERAGE rating brand colourpop\n";
+    cout << "Example: AVERAGE price currency CAD\n";
+
+    cout << "\nINDEX MANAGEMENT:\n";
+    cout << "CREATE_INDEX field HASH\n";
+    cout << "CREATE_INDEX field AVL\n";
+    cout << "REMOVE_INDEX field\n";
+    cout << "SHOW_INDEXES\n";
+
+    cout << "\nRECORD MANAGEMENT:\n";
+    cout << "ADD id \"name\" \"brand\" \"category\" \"type\" price currency hasRating rating shadeCount\n";
+    cout << "UPDATE id \"name\" \"brand\" \"category\" \"type\" price currency hasRating rating shadeCount\n";
+    cout << "DELETE id\n";
+    cout << "SAVE\n";
+
+    cout << "\nCOMMAND FILE:\n";
+    cout << "RUN filename\n";
+    cout << "Example: RUN commands.txt\n";
+
+    cout << "\nTEXT VALUES WITH SPACES MUST BE IN QUOTES.\n";
+    cout << "==============================================\n";
+}
+
+// ==========================================
+// EXECUTE ONE COMMAND
+// ==========================================
+
+bool executeCommand(
+    Database& database,
+    const string& commandLine,
+    const string& dataFile,
+    bool fromFile = false
+    ) {
+    istringstream input(commandLine);
+
+    string command;
+    input >> command;
+
+    command = lowerText(command);
+
+    if (command.empty() || command[0] == '#')
+        return true;
+
+    // ======================================
+    // HELP
+    // ======================================
+
+    if (command == "help") {
+        showHelp();
+    }
+
+    // ======================================
+    // EXIT
+    // ======================================
+
+    else if (command == "exit") {
+        if (fromFile) {
+            cout << "EXIT inside a command file is ignored.\n";
+        }
+        else {
+            return false;
+        }
+    }
+
+    // ======================================
+    // DISPLAY
+    // ======================================
+
+    else if (command == "display") {
+        int limit = database.getProductCount();
+
+        if (!(input >> limit)) {
+            input.clear();
+            limit = database.getProductCount();
+        }
+
+        if (limit < 0) {
+            cout << "Invalid display limit.\n";
+        }
+        else {
+            database.displayProducts(limit);
+        }
+    }
+
+    // ======================================
+    // EXACT SEARCH
+    // ======================================
+
+    else if (command == "exact") {
+        string field, value;
+
+        if (!(input >> field >> quoted(value))) {
+            cout << "Invalid EXACT syntax.\n";
+            return true;
+        }
+
+        if (!isValidFieldName(field)) {
+            cout << "Invalid field.\n";
+            return true;
+        }
+
+        bool usedIndex = false;
+        string method;
+        vector<int> ids;
+
+        if (isNumericField(field)) {
+            double number;
+
+            try {
+                number = stod(value);
+            }
+            catch (...) {
+                cout << "Invalid numeric value.\n";
+                return true;
+            }
+
+            ids = database.searchExact(
+                field,
+                IndexValue(number),
+                usedIndex,
+                method
+                );
+        }
+        else {
+            ids = database.searchExact(
+                field,
+                IndexValue(value),
+                usedIndex,
+                method
+                );
+        }
+
+        cout << "Search method: " << method << '\n';
+
+        vector<Product> results;
+
+        for (int id : ids) {
+            Product* p = database.findProduct(id);
+
+            if (p != nullptr)
+                results.push_back(*p);
+        }
+
+        printProducts(results);
+    }
+
+    // ======================================
+    // NUMERIC RANGE
+    // ======================================
+
+    else if (command == "range") {
+        string field, currency = "";
+        double minimum, maximum;
+
+        if (!(input >> field >> minimum >> maximum)) {
+            cout << "Invalid RANGE syntax.\n";
+            return true;
+        }
+
+        if (!isNumericField(field)) {
+            cout << "RANGE requires a numeric field.\n";
+            return true;
+        }
+
+        if (lowerText(field) == "price" && !(input >> currency)) {
+            cout << "Price range requires a currency.\n";
+            return true;
+        }
+
+        bool usedIndex = false;
+        string method;
+
+        vector<int> ids = database.searchRange(
+            field,
+            minimum,
+            maximum,
+            usedIndex,
+            method,
+            currency
+            );
+
+        cout << "Search method: " << method << '\n';
+
+        vector<Product> results;
+
+        for (int id : ids) {
+            Product* p = database.findProduct(id);
+
+            if (p != nullptr)
+                results.push_back(*p);
+        }
+
+        printProducts(results);
+    }
+
+    // ======================================
+    // SORT
+    // ======================================
+
+    else if (command == "sort") {
+        string field, order;
+
+        if (!(input >> field >> order)) {
+            cout << "Invalid SORT syntax.\n";
+            return true;
+        }
+
+        order = lowerText(order);
+
+        if (!isValidFieldName(field) ||
+            (order != "asc" && order != "desc")) {
+            cout << "Invalid field or sorting order.\n";
+            return true;
+        }
+
+        string currency = "";
+
+        if (lowerText(field) == "price") {
+            if (!(input >> currency)) {
+                cout << "Price sorting requires a currency.\n";
+                return true;
+            }
+        }
+
+        vector<Product> results;
+
+        for (const Product& p : database.getProducts()) {
+            if (lowerText(field) == "price" &&
+                lowerText(p.currency) != lowerText(currency)) {
+                continue;
+            }
+
+            results.push_back(p);
+        }
+
+        insertionSort(results, field, order == "asc");
+
+        cout << "Sorted " << results.size()
+             << " products by " << field << " "
+             << order << ".\n";
+
+        printProducts(results);
+    }
+
+    // ======================================
+    // TOP K / BOTTOM K
+    // ======================================
+
+    else if (command == "top" || command == "bottom") {
+        string field, currency = "";
+        int k;
+
+        if (!(input >> field >> k)) {
+            cout << "Invalid TOP/BOTTOM syntax.\n";
+            return true;
+        }
+
+        if (!isNumericField(field)) {
+            cout << "TOP/BOTTOM requires a numeric field.\n";
+            return true;
+        }
+
+        if (k <= 0) {
+            cout << "K must be greater than zero.\n";
+            return true;
+        }
+
+        if (lowerText(field) == "price" && !(input >> currency)) {
+            cout << "Price TOP/BOTTOM requires a currency.\n";
+            return true;
+        }
+
+        vector<Product> results;
+
+        for (const Product& p : database.getProducts()) {
+            if (lowerText(field) == "price" &&
+                lowerText(p.currency) != lowerText(currency)) {
+                continue;
+            }
+
+            double value;
+
+            if (getNumericValue(p, field, value))
+                results.push_back(p);
+        }
+
+        bool ascending = (command == "bottom");
+
+        insertionSort(results, field, ascending);
+
+        if (static_cast<int>(results.size()) > k)
+            results.resize(k);
+
+        cout << (command == "top" ? "TOP " : "BOTTOM ")
+             << k << " by " << field << ":\n";
+
+        printProducts(results);
+    }
+
+    // ======================================
+    // TWO-FIELD FILTER
+    // ======================================
+
+    else if (command == "filter") {
+        string field1, value1, andWord, field2, value2;
+
+        if (!(input >> field1
+              >> quoted(value1)
+              >> andWord
+              >> field2
+              >> quoted(value2))) {
+            cout << "Invalid FILTER syntax.\n";
+            return true;
+        }
+
+        if (lowerText(andWord) != "and" ||
+            !isValidFieldName(field1) ||
+            !isValidFieldName(field2)) {
+            cout << "Invalid FILTER conditions.\n";
+            return true;
+        }
+
+        vector<Product> results;
+
+        for (const Product& p : database.getProducts()) {
+            if (matchesCondition(p, field1, value1) &&
+                matchesCondition(p, field2, value2)) {
+                results.push_back(p);
+            }
+        }
+
+        printProducts(results);
+    }
+
+    // ======================================
+    // COUNT
+    // ======================================
+
+    else if (command == "count") {
+        string field, value;
+
+        if (!(input >> field)) {
+            cout << "Invalid COUNT syntax.\n";
+            return true;
+        }
+
+        if (lowerText(field) == "all") {
+            cout << "Total products: "
+                 << database.getProductCount() << '\n';
+        }
+        else if (input >> quoted(value)) {
+            if (!isValidFieldName(field)) {
+                cout << "Invalid field.\n";
+                return true;
+            }
+
+            int count = 0;
+
+            for (const Product& p : database.getProducts()) {
+                if (matchesCondition(p, field, value))
+                    count++;
+            }
+
+            cout << "Count: " << count << '\n';
+        }
+        else {
+            cout << "Invalid COUNT syntax.\n";
+        }
+    }
+
+    // ======================================
+    // AVERAGE
+    // ======================================
+
+    else if (command == "average") {
+        string numericField;
+        string conditionField;
+        string conditionValue;
+
+        if (!(input >> numericField
+              >> conditionField
+              >> quoted(conditionValue))) {
+            cout << "Invalid AVERAGE syntax.\n";
+            return true;
+        }
+
+        if (!isNumericField(numericField) ||
+            !isValidFieldName(conditionField)) {
+            cout << "Invalid field.\n";
+            return true;
+        }
+
+        // Prices must be averaged within one currency.
+        if (lowerText(numericField) == "price" &&
+            lowerText(conditionField) != "currency") {
+            cout << "Price average requires a currency condition.\n";
+            cout << "Example: AVERAGE price currency CAD\n";
+            return true;
+        }
+
+        if (lowerText(numericField) == "price" &&
+            lowerText(conditionValue) == "unknown") {
+            cout << "Cannot calculate a price average for UNKNOWN currency.\n";
+            return true;
+        }
+
+        double total = 0;
+        int count = 0;
+
+        for (const Product& p : database.getProducts()) {
+            if (!matchesCondition(p, conditionField, conditionValue))
+                continue;
+
+            double value;
+
+            if (getNumericValue(p, numericField, value)) {
+                total += value;
+                count++;
+            }
+        }
+
+        if (count == 0) {
+            cout << "No matching numeric values.\n";
+        }
+        else {
+            cout << fixed << setprecision(2);
+
+            cout << "Count: " << count << '\n';
+
+            cout << "Average " << numericField << ": "
+                 << total / count << '\n';
+
+            cout.unsetf(ios::floatfield);
+        }
+    }
+
+    // ======================================
+    // CREATE INDEX
+    // ======================================
+
+    else if (command == "create_index") {
+        string field, type;
+
+        if (!(input >> field >> type)) {
+            cout << "Invalid CREATE_INDEX syntax.\n";
+            return true;
+        }
+
+        database.createIndex(field, type);
+    }
+
+    // ======================================
+    // REMOVE INDEX
+    // ======================================
+
+    else if (command == "remove_index") {
+        string field;
+
+        if (!(input >> field)) {
+            cout << "Invalid REMOVE_INDEX syntax.\n";
+            return true;
+        }
+
+        database.removeIndex(field);
+    }
+
+    // ======================================
+    // SHOW INDEXES
+    // ======================================
+
+    else if (command == "show_indexes") {
+        database.displayIndexes();
+    }
+
+    // ======================================
+    // DELETE RECORD
+    // ======================================
+
+    else if (command == "delete") {
+        int id;
+
+        if (!(input >> id)) {
+            cout << "Invalid DELETE syntax.\n";
+            return true;
+        }
+
+        if (database.deleteProduct(id))
+            cout << "Product deleted successfully.\n";
+        else
+            cout << "Product not found.\n";
+    }
+
+    // ======================================
+    // ADD / UPDATE RECORD
+    // ======================================
+
+    else if (command == "add" || command == "update") {
+        Product p{};
+        int hasRating;
+
+        if (!(input >> p.id
+              >> quoted(p.name)
+              >> quoted(p.brand)
+              >> quoted(p.category)
+              >> quoted(p.productType)
+              >> p.price
+              >> p.currency
+              >> hasRating
+              >> p.rating
+              >> p.shadeCount)) {
+            cout << "Invalid ADD/UPDATE syntax.\n";
+            return true;
+        }
+
+        if (p.name.empty() ||
+            p.brand.empty() ||
+            p.category.empty() ||
+            p.productType.empty() ||
+            p.price < 0 ||
+            p.shadeCount < 0 ||
+            (hasRating != 0 && hasRating != 1) ||
+            (hasRating == 1 && (p.rating < 0 || p.rating > 5))) {
+            cout << "Invalid product values.\n";
+            return true;
+        }
+
+        p.currency = lowerText(p.currency);
+
+        for (char& c : p.currency) {
+            c = static_cast<char>(
+                toupper(static_cast<unsigned char>(c))
+                );
+        }
+
+        if (p.currency != "USD" &&
+            p.currency != "GBP" &&
+            p.currency != "CAD" &&
+            p.currency != "UNKNOWN") {
+            cout << "Invalid currency.\n";
+            return true;
+        }
+
+        p.hasRating = (hasRating == 1);
+
+        if (!p.hasRating)
+            p.rating = 0;
+
+        bool success;
+
+        if (command == "add")
+            success = database.addProduct(p);
+        else
+            success = database.updateProduct(p.id, p);
+
+        if (success)
+            cout << "Product operation successful.\n";
+        else
+            cout << "Product operation failed. Check the ID.\n";
+    }
+
+    // ======================================
+    // SAVE
+    // ======================================
+
+    else if (command == "save") {
+        if (database.saveToFile(dataFile))
+            cout << "Database saved successfully.\n";
+        else
+            cout << "Could not save database.\n";
+    }
+
+    // ======================================
+    // RUN COMMAND FILE
+    // ======================================
+
+    else if (command == "run") {
+        string filename;
+
+        if (!(input >> filename)) {
+            cout << "Invalid RUN syntax.\n";
+            return true;
+        }
+
+        ifstream commandFile(filename);
+
+        if (!commandFile.is_open()) {
+            cout << "Could not open command file: "
+                 << filename << '\n';
+            return true;
+        }
+
+        cout << "\nRunning command file: "
+             << filename << "\n";
+
+        string line;
+        int lineNumber = 0;
+
+        while (getline(commandFile, line)) {
+            lineNumber++;
+
+            if (line.empty() || line[0] == '#')
+                continue;
+
+            cout << "\n[" << lineNumber << "] "
+                 << line << '\n';
+
+            if (lowerText(line).find("run ") == 0) {
+                cout << "Nested RUN commands are not supported.\n";
+                continue;
+            }
+
+            executeCommand(database, line, dataFile, true);
+        }
+
+        cout << "\nFinished command file.\n";
+    }
+
+    // ======================================
+    // INVALID COMMAND
+    // ======================================
+
+    else {
+        cout << "Invalid command: " << command << '\n';
+        cout << "Type HELP to see available commands.\n";
+    }
+
+    return true;
+}
+
+// ==========================================
+// MAIN
+// ==========================================
 
 int main(int argc, char *argv[]) {
     QCoreApplication app(argc, argv);
 
     Database database;
 
-    const std::string filename = "data/makeup_products.txt";
+    const string dataFile = "data/makeup_products.txt";
 
-    if (!database.loadFromFile(filename)) {
-        std::cout << "Failed to load database.\n";
+    if (!database.loadFromFile(dataFile)) {
+        cout << "Failed to load database.\n";
         return 1;
     }
 
-    std::cout << "MAKEUP DATABASE SYSTEM\n";
-    std::cout << database.getProductCount()
-              << " products loaded successfully.\n";
+    cout << "\n====================================\n";
+    cout << "       MAKEUP DATABASE SYSTEM\n";
+    cout << "====================================\n";
 
-    // Display search results.
-    auto displaySearchResults = [&](const std::vector<int>& ids) {
-        if (ids.empty()) {
-            std::cout << "No matching products found.\n";
-            return;
-        }
+    cout << database.getProductCount()
+         << " products loaded successfully.\n";
 
-        for (int id : ids) {
-            Product* p = database.findProduct(id);
+    cout << "Type HELP to see available commands.\n";
 
-            if (p != nullptr) {
-                std::cout << "ID: " << p->id
-                          << " | Name: " << p->name
-                          << " | Brand: " << p->brand
-                          << " | Price: " << p->price << " "
-                          << p->currency
-                          << " | Shades: " << p->shadeCount
-                          << '\n';
-            }
-        }
+    string line;
 
-        std::cout << "Found " << ids.size()
-                  << " matching products.\n";
-    };
+    while (true) {
+        cout << "\nDB> ";
 
-    int choice = -1;
+        if (!getline(cin, line))
+            break;
 
-    do {
-        std::cout << "\n========== MENU ==========\n";
-        std::cout << "1. Display products\n";
-        std::cout << "2. Add product\n";
-        std::cout << "3. Update product\n";
-        std::cout << "4. Delete product\n";
-        std::cout << "5. Save database\n";
-        std::cout << "6. Create index\n";
-        std::cout << "7. Remove index\n";
-        std::cout << "8. Display active indexes\n";
-        std::cout << "9. Exact search\n";
-        std::cout << "10. Numeric range search\n";
-        std::cout << "0. Exit\n";
-        std::cout << "Choose: ";
-
-        if (!(std::cin >> choice)) {
-            std::cin.clear();
-            std::cin.ignore(
-                std::numeric_limits<std::streamsize>::max(), '\n'
-                );
-            std::cout << "Invalid input. Please enter a number.\n";
-            choice = -1;
+        if (line.empty())
             continue;
-        }
 
-        // F1: DISPLAY PRODUCTS
-        if (choice == 1) {
-            database.displayProducts();
-        }
+        if (!executeCommand(database, line, dataFile))
+            break;
+    }
 
-        // F2: ADD OR UPDATE PRODUCT
-        else if (choice == 2 || choice == 3) {
-            Product p{};
-
-            if (choice == 3) {
-                std::cout << "Enter ID to update: ";
-
-                if (!(std::cin >> p.id)) {
-                    std::cin.clear();
-                    std::cin.ignore(
-                        std::numeric_limits<std::streamsize>::max(), '\n'
-                        );
-                    std::cout << "Invalid ID.\n";
-                    continue;
-                }
-
-                if (database.findProduct(p.id) == nullptr) {
-                    std::cout << "Product not found.\n";
-                    continue;
-                }
-            }
-            else {
-                std::cout << "Enter new product ID: ";
-
-                if (!(std::cin >> p.id)) {
-                    std::cin.clear();
-                    std::cin.ignore(
-                        std::numeric_limits<std::streamsize>::max(), '\n'
-                        );
-                    std::cout << "Invalid ID.\n";
-                    continue;
-                }
-            }
-
-            std::cin.ignore(
-                std::numeric_limits<std::streamsize>::max(), '\n'
-                );
-
-            std::cout << "Name: ";
-            std::getline(std::cin, p.name);
-
-            std::cout << "Brand: ";
-            std::getline(std::cin, p.brand);
-
-            std::cout << "Category: ";
-            std::getline(std::cin, p.category);
-
-            std::cout << "Product type: ";
-            std::getline(std::cin, p.productType);
-
-            if (p.name.empty() || p.brand.empty() ||
-                p.category.empty() || p.productType.empty()) {
-                std::cout << "Fields cannot be empty.\n";
-                continue;
-            }
-
-            std::cout << "Price: ";
-
-            if (!(std::cin >> p.price) || p.price < 0) {
-                std::cin.clear();
-                std::cin.ignore(
-                    std::numeric_limits<std::streamsize>::max(), '\n'
-                    );
-                std::cout << "Invalid price.\n";
-                continue;
-            }
-
-            std::cout << "Currency (USD, GBP, CAD, UNKNOWN): ";
-            std::cin >> p.currency;
-
-            for (char& c : p.currency) {
-                c = static_cast<char>(
-                    std::toupper(static_cast<unsigned char>(c))
-                    );
-            }
-
-            if (p.currency != "USD" && p.currency != "GBP" &&
-                p.currency != "CAD" && p.currency != "UNKNOWN") {
-                std::cout << "Invalid currency.\n";
-                continue;
-            }
-
-            std::cout << "Has rating? (1 = yes, 0 = no): ";
-
-            if (!(std::cin >> p.hasRating) ||
-                (p.hasRating != 0 && p.hasRating != 1)) {
-                std::cin.clear();
-                std::cin.ignore(
-                    std::numeric_limits<std::streamsize>::max(), '\n'
-                    );
-                std::cout << "Invalid rating choice.\n";
-                continue;
-            }
-
-            if (p.hasRating) {
-                std::cout << "Rating: ";
-
-                if (!(std::cin >> p.rating) ||
-                    p.rating < 0 || p.rating > 5) {
-                    std::cin.clear();
-                    std::cin.ignore(
-                        std::numeric_limits<std::streamsize>::max(), '\n'
-                        );
-                    std::cout << "Invalid rating. Enter a value from 0 to 5.\n";
-                    continue;
-                }
-            }
-            else {
-                p.rating = 0;
-            }
-
-            std::cout << "Shade count: ";
-
-            if (!(std::cin >> p.shadeCount) || p.shadeCount < 0) {
-                std::cin.clear();
-                std::cin.ignore(
-                    std::numeric_limits<std::streamsize>::max(), '\n'
-                    );
-                std::cout << "Invalid shade count.\n";
-                continue;
-            }
-
-            bool success;
-
-            if (choice == 2)
-                success = database.addProduct(p);
-            else
-                success = database.updateProduct(p.id, p);
-
-            if (success)
-                std::cout << "Operation successful!\n";
-            else
-                std::cout << "Operation failed. Check the ID.\n";
-        }
-
-        // F2: DELETE PRODUCT
-        else if (choice == 4) {
-            int id;
-
-            std::cout << "Enter product ID to delete: ";
-
-            if (!(std::cin >> id)) {
-                std::cin.clear();
-                std::cin.ignore(
-                    std::numeric_limits<std::streamsize>::max(), '\n'
-                    );
-                std::cout << "Invalid ID.\n";
-                continue;
-            }
-
-            if (database.deleteProduct(id))
-                std::cout << "Product deleted successfully.\n";
-            else
-                std::cout << "Product not found.\n";
-        }
-
-        // F2: SAVE DATABASE
-        else if (choice == 5) {
-            if (database.saveToFile(filename))
-                std::cout << "Database saved successfully.\n";
-            else
-                std::cout << "Failed to save database.\n";
-        }
-
-        // F6: CREATE INDEX
-        else if (choice == 6) {
-            std::string field, type;
-
-            std::cout << "Enter field name: ";
-            std::cin >> field;
-
-            std::cout << "Index type (HASH or AVL): ";
-            std::cin >> type;
-
-            for (char& c : type) {
-                c = static_cast<char>(
-                    std::tolower(static_cast<unsigned char>(c))
-                    );
-            }
-
-            if (database.createIndex(field, type))
-                std::cout << "Index created successfully!\n";
-            else
-                std::cout << "Could not create index.\n";
-        }
-
-        // F6: REMOVE INDEX
-        else if (choice == 7) {
-            std::string field;
-
-            std::cout << "Enter field name: ";
-            std::cin >> field;
-
-            if (database.removeIndex(field))
-                std::cout << "Index removed successfully!\n";
-            else
-                std::cout << "No active index found for this field.\n";
-        }
-
-        // F6: DISPLAY ACTIVE INDEXES
-        else if (choice == 8) {
-            database.displayIndexes();
-
-            std::cout << "Active indexes: "
-                      << database.getActiveIndexCount() << '\n';
-        }
-
-        // F6: EXACT SEARCH
-        else if (choice == 9) {
-            std::string field;
-            std::string value;
-            std::string method;
-            bool usedIndex = false;
-
-            std::cout << "Enter field name: ";
-            std::cin >> field;
-
-            std::string normalizedField = field;
-
-            for (char& c : normalizedField) {
-                c = static_cast<char>(
-                    std::tolower(static_cast<unsigned char>(c))
-                    );
-            }
-
-            bool numericField =
-                normalizedField == "id" ||
-                normalizedField == "price" ||
-                normalizedField == "rating" ||
-                normalizedField == "shadecount";
-
-            std::vector<int> results;
-
-            if (numericField) {
-                double number;
-
-                std::cout << "Enter numeric value: ";
-
-                if (!(std::cin >> number)) {
-                    std::cin.clear();
-                    std::cin.ignore(
-                        std::numeric_limits<std::streamsize>::max(), '\n'
-                        );
-                    std::cout << "Invalid numeric value.\n";
-                    continue;
-                }
-
-                results = database.searchExact(
-                    field, IndexValue(number), usedIndex, method
-                    );
-            }
-            else {
-                std::cout << "Enter exact text value: ";
-
-                std::cin.ignore(
-                    std::numeric_limits<std::streamsize>::max(), '\n'
-                    );
-
-                std::getline(std::cin, value);
-
-                results = database.searchExact(
-                    field, IndexValue(value), usedIndex, method
-                    );
-            }
-
-            std::cout << "Search method: " << method << '\n';
-            std::cout << "Index used: "
-                      << (usedIndex ? "Yes" : "No") << '\n';
-
-            displaySearchResults(results);
-        }
-
-        // F6: NUMERIC RANGE SEARCH
-        else if (choice == 10) {
-            std::string field;
-            std::string currency = "";
-            std::string method;
-            double minimum, maximum;
-            bool usedIndex = false;
-
-            std::vector<int> results;
-
-            std::cout << "Enter numeric field (price, rating, id, shadeCount): ";
-            std::cin >> field;
-
-            std::cout << "Enter minimum value: ";
-
-            if (!(std::cin >> minimum)) {
-                std::cin.clear();
-                std::cin.ignore(
-                    std::numeric_limits<std::streamsize>::max(), '\n'
-                    );
-                std::cout << "Invalid minimum value.\n";
-                continue;
-            }
-
-            std::cout << "Enter maximum value: ";
-
-            if (!(std::cin >> maximum)) {
-                std::cin.clear();
-                std::cin.ignore(
-                    std::numeric_limits<std::streamsize>::max(), '\n'
-                    );
-                std::cout << "Invalid maximum value.\n";
-                continue;
-            }
-
-            std::string normalizedField = field;
-
-            for (char& c : normalizedField) {
-                c = static_cast<char>(
-                    std::tolower(static_cast<unsigned char>(c))
-                    );
-            }
-
-            if (normalizedField == "price") {
-                std::cout << "Enter currency (USD, GBP, CAD): ";
-                std::cin >> currency;
-
-                for (char& c : currency) {
-                    c = static_cast<char>(
-                        std::toupper(static_cast<unsigned char>(c))
-                        );
-                }
-            }
-
-            results = database.searchRange(
-                field, minimum, maximum,
-                usedIndex, method, currency
-                );
-
-            std::cout << "Search method: " << method << '\n';
-            std::cout << "Index used: "
-                      << (usedIndex ? "Yes" : "No") << '\n';
-
-            displaySearchResults(results);
-        }
-
-        else if (choice == 0) {
-            // Exit the application.
-        }
-
-        else {
-            std::cout << "Invalid choice.\n";
-        }
-
-    } while (choice != 0);
-
-    std::cout << "Goodbye!\n";
+    cout << "Goodbye!\n";
 
     return 0;
 }

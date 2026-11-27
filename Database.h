@@ -13,7 +13,6 @@ class Database {
 private:
     std::vector<Product> products;
 
-    // Stores every active index and the field it indexes.
     struct ActiveIndex {
         std::string field;
         std::string type;
@@ -22,7 +21,6 @@ private:
 
     std::vector<ActiveIndex> activeIndexes;
 
-    // Field and index management helpers.
     std::string normalize(const std::string& value) const;
     bool isValidField(const std::string& field) const;
     bool isMissingValue(const Product& product,
@@ -46,6 +44,9 @@ public:
 
     int getProductCount() const;
 
+    // F7: Read-only access for sorting and command queries.
+    const std::vector<Product>& getProducts() const;
+
     bool addProduct(const Product& product);
     bool updateProduct(int id, const Product& updatedProduct);
     bool deleteProduct(int id);
@@ -54,18 +55,13 @@ public:
     void displayProducts(int limit = 10) const;
 
     // F6: Runtime index management.
-    bool createIndex(
-        const std::string& field,
-        const std::string& indexType
-        );
+    bool createIndex(const std::string& field,
+                     const std::string& indexType);
 
     bool removeIndex(const std::string& field);
-
     void displayIndexes() const;
-
     int getActiveIndexCount() const;
 
-    // F6: Exact search using an index or linear scan.
     std::vector<int> searchExact(
         const std::string& field,
         const IndexValue& value,
@@ -73,7 +69,6 @@ public:
         std::string& method
         ) const;
 
-    // F6: Numeric range search using AVL or linear scan.
     std::vector<int> searchRange(
         const std::string& field,
         double minimum,
