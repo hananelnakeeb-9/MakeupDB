@@ -3,8 +3,12 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <vector>
+#include <variant>
+#include <cctype>
 
 #include "Database.h"
+#include "Index.h"
 
 int main(int argc, char *argv[]) {
     QCoreApplication app(argc, argv);
@@ -22,6 +26,31 @@ int main(int argc, char *argv[]) {
     std::cout << database.getProductCount()
               << " products loaded successfully.\n";
 
+    // Display search results.
+    auto displaySearchResults = [&](const std::vector<int>& ids) {
+        if (ids.empty()) {
+            std::cout << "No matching products found.\n";
+            return;
+        }
+
+        for (int id : ids) {
+            Product* p = database.findProduct(id);
+
+            if (p != nullptr) {
+                std::cout << "ID: " << p->id
+                          << " | Name: " << p->name
+                          << " | Brand: " << p->brand
+                          << " | Price: " << p->price << " "
+                          << p->currency
+                          << " | Shades: " << p->shadeCount
+                          << '\n';
+            }
+        }
+
+        std::cout << "Found " << ids.size()
+                  << " matching products.\n";
+    };
+
     int choice = -1;
 
     do {
@@ -31,6 +60,11 @@ int main(int argc, char *argv[]) {
         std::cout << "3. Update product\n";
         std::cout << "4. Delete product\n";
         std::cout << "5. Save database\n";
+        std::cout << "6. Create index\n";
+        std::cout << "7. Remove index\n";
+        std::cout << "8. Display active indexes\n";
+        std::cout << "9. Exact search\n";
+        std::cout << "10. Numeric range search\n";
         std::cout << "0. Exit\n";
         std::cout << "Choose: ";
 
@@ -44,10 +78,12 @@ int main(int argc, char *argv[]) {
             continue;
         }
 
+        // F1: DISPLAY PRODUCTS
         if (choice == 1) {
             database.displayProducts();
         }
 
+        // F2: ADD OR UPDATE PRODUCT
         else if (choice == 2 || choice == 3) {
             Product p{};
 
@@ -96,12 +132,15 @@ int main(int argc, char *argv[]) {
 
             std::cout << "Product type: ";
             std::getline(std::cin, p.productType);
+
             if (p.name.empty() || p.brand.empty() ||
                 p.category.empty() || p.productType.empty()) {
                 std::cout << "Fields cannot be empty.\n";
                 continue;
             }
+
             std::cout << "Price: ";
+
             if (!(std::cin >> p.price) || p.price < 0) {
                 std::cin.clear();
                 std::cin.ignore(
@@ -114,19 +153,20 @@ int main(int argc, char *argv[]) {
             std::cout << "Currency (USD, GBP, CAD, UNKNOWN): ";
             std::cin >> p.currency;
 
-            if (p.currency != "USD" &&
-                p.currency != "usd" &&
-                p.currency != "GBP" &&
-                p.currency != "gbp" &&
-                p.currency != "CAD" &&
-                p.currency != "cad" &&
-                p.currency != "UNKNOWN" &&
-                p.currency != "unknown") {
+            for (char& c : p.currency) {
+                c = static_cast<char>(
+                    std::toupper(static_cast<unsigned char>(c))
+                    );
+            }
+
+            if (p.currency != "USD" && p.currency != "GBP" &&
+                p.currency != "CAD" && p.currency != "UNKNOWN") {
                 std::cout << "Invalid currency.\n";
                 continue;
             }
 
             std::cout << "Has rating? (1 = yes, 0 = no): ";
+
             if (!(std::cin >> p.hasRating) ||
                 (p.hasRating != 0 && p.hasRating != 1)) {
                 std::cin.clear();
@@ -155,6 +195,7 @@ int main(int argc, char *argv[]) {
             }
 
             std::cout << "Shade count: ";
+
             if (!(std::cin >> p.shadeCount) || p.shadeCount < 0) {
                 std::cin.clear();
                 std::cin.ignore(
@@ -177,6 +218,7 @@ int main(int argc, char *argv[]) {
                 std::cout << "Operation failed. Check the ID.\n";
         }
 
+        // F2: DELETE PRODUCT
         else if (choice == 4) {
             int id;
 
@@ -197,6 +239,7 @@ int main(int argc, char *argv[]) {
                 std::cout << "Product not found.\n";
         }
 
+        // F2: SAVE DATABASE
         else if (choice == 5) {
             if (database.saveToFile(filename))
                 std::cout << "Database saved successfully.\n";
@@ -204,7 +247,185 @@ int main(int argc, char *argv[]) {
                 std::cout << "Failed to save database.\n";
         }
 
-        else if (choice != 0) {
+        // F6: CREATE INDEX
+        else if (choice == 6) {
+            std::string field, type;
+
+            std::cout << "Enter field name: ";
+            std::cin >> field;
+
+            std::cout << "Index type (HASH or AVL): ";
+            std::cin >> type;
+
+            for (char& c : type) {
+                c = static_cast<char>(
+                    std::tolower(static_cast<unsigned char>(c))
+                    );
+            }
+
+            if (database.createIndex(field, type))
+                std::cout << "Index created successfully!\n";
+            else
+                std::cout << "Could not create index.\n";
+        }
+
+        // F6: REMOVE INDEX
+        else if (choice == 7) {
+            std::string field;
+
+            std::cout << "Enter field name: ";
+            std::cin >> field;
+
+            if (database.removeIndex(field))
+                std::cout << "Index removed successfully!\n";
+            else
+                std::cout << "No active index found for this field.\n";
+        }
+
+        // F6: DISPLAY ACTIVE INDEXES
+        else if (choice == 8) {
+            database.displayIndexes();
+
+            std::cout << "Active indexes: "
+                      << database.getActiveIndexCount() << '\n';
+        }
+
+        // F6: EXACT SEARCH
+        else if (choice == 9) {
+            std::string field;
+            std::string value;
+            std::string method;
+            bool usedIndex = false;
+
+            std::cout << "Enter field name: ";
+            std::cin >> field;
+
+            std::string normalizedField = field;
+
+            for (char& c : normalizedField) {
+                c = static_cast<char>(
+                    std::tolower(static_cast<unsigned char>(c))
+                    );
+            }
+
+            bool numericField =
+                normalizedField == "id" ||
+                normalizedField == "price" ||
+                normalizedField == "rating" ||
+                normalizedField == "shadecount";
+
+            std::vector<int> results;
+
+            if (numericField) {
+                double number;
+
+                std::cout << "Enter numeric value: ";
+
+                if (!(std::cin >> number)) {
+                    std::cin.clear();
+                    std::cin.ignore(
+                        std::numeric_limits<std::streamsize>::max(), '\n'
+                        );
+                    std::cout << "Invalid numeric value.\n";
+                    continue;
+                }
+
+                results = database.searchExact(
+                    field, IndexValue(number), usedIndex, method
+                    );
+            }
+            else {
+                std::cout << "Enter exact text value: ";
+
+                std::cin.ignore(
+                    std::numeric_limits<std::streamsize>::max(), '\n'
+                    );
+
+                std::getline(std::cin, value);
+
+                results = database.searchExact(
+                    field, IndexValue(value), usedIndex, method
+                    );
+            }
+
+            std::cout << "Search method: " << method << '\n';
+            std::cout << "Index used: "
+                      << (usedIndex ? "Yes" : "No") << '\n';
+
+            displaySearchResults(results);
+        }
+
+        // F6: NUMERIC RANGE SEARCH
+        else if (choice == 10) {
+            std::string field;
+            std::string currency = "";
+            std::string method;
+            double minimum, maximum;
+            bool usedIndex = false;
+
+            std::vector<int> results;
+
+            std::cout << "Enter numeric field (price, rating, id, shadeCount): ";
+            std::cin >> field;
+
+            std::cout << "Enter minimum value: ";
+
+            if (!(std::cin >> minimum)) {
+                std::cin.clear();
+                std::cin.ignore(
+                    std::numeric_limits<std::streamsize>::max(), '\n'
+                    );
+                std::cout << "Invalid minimum value.\n";
+                continue;
+            }
+
+            std::cout << "Enter maximum value: ";
+
+            if (!(std::cin >> maximum)) {
+                std::cin.clear();
+                std::cin.ignore(
+                    std::numeric_limits<std::streamsize>::max(), '\n'
+                    );
+                std::cout << "Invalid maximum value.\n";
+                continue;
+            }
+
+            std::string normalizedField = field;
+
+            for (char& c : normalizedField) {
+                c = static_cast<char>(
+                    std::tolower(static_cast<unsigned char>(c))
+                    );
+            }
+
+            if (normalizedField == "price") {
+                std::cout << "Enter currency (USD, GBP, CAD): ";
+                std::cin >> currency;
+
+                for (char& c : currency) {
+                    c = static_cast<char>(
+                        std::toupper(static_cast<unsigned char>(c))
+                        );
+                }
+            }
+
+            results = database.searchRange(
+                field, minimum, maximum,
+                usedIndex, method, currency
+                );
+
+            std::cout << "Search method: " << method << '\n';
+            std::cout << "Index used: "
+                      << (usedIndex ? "Yes" : "No") << '\n';
+
+            displaySearchResults(results);
+        }
+
+        else if (choice == 0) {
+            // Exit the application.
+        }
+
+        else {
             std::cout << "Invalid choice.\n";
         }
 
