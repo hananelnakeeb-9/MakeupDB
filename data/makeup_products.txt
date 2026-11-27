@@ -1,0 +1,494 @@
+ID	Name	Brand	Category	ProductType	Price	Currency	Rating	ShadeCount
+1048	Lippie Pencil	colourpop	pencil	lip_liner	5	CAD	NA	34
+1047	Blotted Lip	colourpop	lipstick	lipstick	5.5	CAD	NA	7
+1046	Lippie Stix	colourpop	lipstick	lipstick	5.5	CAD	NA	46
+1045	No Filter Foundation	colourpop	liquid	foundation	12	CAD	NA	42
+1044	Lipstick	boosh	lipstick	lipstick	26	CAD	NA	15
+1043	Serum Foundation	deciem	liquid	foundation	6.7	CAD	NA	21
+1042	Coverage Foundation	deciem	liquid	foundation	6.9	CAD	NA	21
+1041	Liquid Liner	zorah biocosmetiques	liquid	eyeliner	0	USD	NA	1
+1039	 Realist Invisible Setting Powder	w3llpeople	powder	foundation	0	USD	NA	1
+1037	B Glossy Lip Gloss	sally b's skin yummies	lip_gloss	lipstick	0	USD	NA	6
+1035	Multi Purpose Powder - Blush & Eye	rejuva minerals	powder	blush	0	USD	NA	3
+1033	Pressed Powder Foundation	rejuva minerals	powder	foundation	0	USD	NA	10
+1032	Bronzer - loose	rejuva minerals	powder	bronzer	0	USD	NA	1
+1031	Bronzer - pressed	rejuva minerals	powder	bronzer	0	USD	NA	2
+1030	Lip Gloss	penny lane organics	lip_gloss	lipstick	0	USD	NA	7
+1029	Amalia	nudus	lipstick	lipstick	0	USD	NA	15
+1028	Pressed Foundation	marienatie	powder	foundation	0	USD	NA	9
+1026	Mineral Blush	marienatie	powder	blush	0	USD	NA	2
+1023	Lipstick	marienatie	lipstick	lipstick	0	USD	NA	4
+1022	Lip Gloss	marienatie	lip_gloss	lipstick	0	USD	NA	8
+1021	Gel Liner	marienatie	gel	eyeliner	0	USD	NA	1
+1020	Eyeliner	marienatie	pencil	eyeliner	0	USD	NA	3
+1019	Mineral Eye Brow Liner Charcoal Brown	maia's mineral galaxy	pencil	eyebrow	0	USD	NA	5
+1017	Creme to Powder Blush	lotus cosmetics usa	cream	blush	0	USD	NA	3
+1016	Eye Shadow Palette Mesmerize	lotus cosmetics usa	palette	eyeshadow	0	USD	NA	4
+1015	Eye Shadow Palette Deluxe	lotus cosmetics usa	palette	eyeshadow	0	USD	NA	4
+1014	Eye Shadow Palette Smokey	lotus cosmetics usa	palette	eyeshadow	0	USD	NA	4
+1013	Eye Shadow Palette Seduction	lotus cosmetics usa	palette	eyeshadow	0	USD	NA	4
+1012	Eye Shadow Palette Cocoa	lotus cosmetics usa	palette	eyeshadow	0	USD	NA	4
+1010	Conch Lipstick	coastal classic creation	lipstick	lipstick	0	USD	NA	15
+1009	Reflect Lip Gloss	c'est moi	lip_gloss	lipstick	0	USD	NA	3
+1007	Luminary Lip Crayon	c'est moi	pencil	lip_liner	0	USD	NA	6
+1006	Fearless Eyeliner	c'est moi	pencil	eyeliner	0	USD	NA	1
+1005	Liquid Eye Shadow	alva	cream	eyeshadow	9.95	USD	NA	1
+1004	Stretch Concealer	glossier	concealer	foundation	22	USD	NA	5
+1003	Cloud Paint	glossier	cream	blush	22	USD	NA	4
+1002	Wowder	glossier	powder	foundation	27	USD	NA	3
+1001	Haloscope	glossier	highlighter	foundation	27	USD	NA	3
+969	Holographic Halo Cream Eyeliner	nyx	cream	eyeliner	11	USD	NA	5
+968	Cake That! Powder Eyeliner	nyx	cream	eyeliner	8	USD	NA	0
+967	Epic Black Mousse Liner	nyx	cream	eyeliner	10	USD	NA	0
+966	Cosmic Gel Liner	nyx	gel	eyeliner	10	USD	NA	3
+965	Gel Liner And Smudger	nyx	gel	eyeliner	9	USD	NA	7
+964	Metallic Eyeliner	nyx	pencil	eyeliner	8	USD	NA	6
+963	Tres Jolie Gel Pencil Liner	nyx	pencil	eyeliner	12	USD	NA	2
+962	Faux Whites Eye Brightener	nyx	pencil	eyeliner	8	USD	NA	8
+961	Faux Blacks Eyeliner	nyx	pencil	eyeliner	8	USD	NA	8
+960	Collection Noir	nyx	pencil	eyeliner	6	USD	NA	6
+959	Slim Eye Pencil	nyx	pencil	eyeliner	4	USD	NA	31
+958	Retractable Eye Liner	nyx	pencil	eyeliner	5	USD	NA	13
+957	Slide On Pencil	nyx	pencil	eyeliner	8	USD	NA	16
+956	Jumbo Eye Pencil	nyx	pencil	eyeliner	4.5	USD	NA	32
+955	Two Timer Dual Ended Eyeliner	nyx	liquid	eyeliner	10	USD	NA	0
+954	Strictly Vinyl Eyeliner	nyx	liquid	eyeliner	7	USD	NA	8
+953	Collection Chocolate	nyx	pencil	eyeliner	6	USD	NA	6
+952	Super Fat Eye Marker	nyx	liquid	eyeliner	10	USD	NA	0
+951	Super Skinny Eye Marker	nyx	liquid	eyeliner	9.5	USD	NA	0
+950	Felt Tip Liner	nyx	liquid	eyeliner	9.5	USD	NA	3
+949	The Curve	nyx	liquid	eyeliner	15	USD	NA	0
+948	Colored Felt Tip Liner	nyx	liquid	eyeliner	10	USD	NA	6
+947	Vinyl Liquid Liner	nyx	liquid	eyeliner	7	USD	NA	0
+946	That's The Point Eyeliner	nyx	liquid	eyeliner	10	USD	NA	7
+945	White Liquid Liner	nyx	liquid	eyeliner	7	USD	NA	0
+944	Studio Liquid Liner	nyx	liquid	eyeliner	4.5	USD	NA	12
+943	Epic Ink Liner	nyx	liquid	eyeliner	8	USD	NA	0
+942	Glam Liner Aqua Luxe Collection	nyx	liquid	eyeliner	5.5	USD	NA	9
+941	Matte Liquid Liner	nyx	liquid	eyeliner	7	USD	NA	0
+940	Vivid Brights Liner	nyx	liquid	eyeliner	7	USD	NA	8
+939	SFX Setting Powder	nyx	powder	foundation	10	USD	NA	0
+938	Holographic Halo Finishing Powder	nyx	powder	foundation	12	USD	NA	2
+937	Blotting Powder	nyx	powder	foundation	12	USD	NA	4
+936	#NOFILTER Finishing Powder	nyx	powder	foundation	12	USD	NA	15
+935	Color Correcting Powder	nyx	powder	foundation	10	USD	NA	3
+934	High Definition Finishing Powder Mini	nyx	powder	foundation	3.5	USD	NA	3
+933	Primal Colors	nyx	powder	foundation	5	USD	NA	8
+932	Radiant Finishing Powder	nyx	powder	foundation	9	USD	NA	2
+931	Mineral Finishing Powder	nyx	powder	foundation	10	USD	NA	2
+930	High Definition Finishing Powder	nyx	powder	foundation	10	USD	NA	3
+929	Studio Finishing Powder	nyx	powder	foundation	10	USD	NA	0
+912	Gotcha Covered Concealer Pencil	nyx	concealer	foundation	7	USD	NA	19
+911	Conceal, Correct, Contour Palette	nyx	concealer	foundation	12	USD	NA	3
+910	Wonder Pencil	nyx	pencil	eyeliner	4.5	USD	NA	3
+909	Dark Circle Concealer	nyx	concealer	foundation	6	USD	NA	4
+908	Gotcha Covered Concealer	nyx	concealer	foundation	6	USD	NA	20
+907	Color Correcting Palette	nyx	concealer	foundation	12	USD	NA	0
+906	Concealer Jar	nyx	concealer	foundation	5	USD	NA	24
+905	HD Photogenic Concealer Wand	nyx	concealer	foundation	5	USD	NA	23
+903	Define & Refine Powder Foundation	nyx	powder	foundation	12	USD	NA	6
+898	Stay Matte But Not Flat Powder Foundation	nyx	powder	foundation	9.5	USD	NA	30
+896	Hydra Touch Powder Foundation	nyx	powder	foundation	10	USD	NA	20
+888	Luv Out Loud Liquid Lipstick	nyx	lipstick	lipstick	7	USD	NA	6
+887	V'Amped Up! Lip Top Coat	nyx	lipstick	lipstick	6	USD	NA	0
+886	Simply Pink Lip Cream	nyx	lipstick	lipstick	6.5	USD	NA	6
+885	Simply Red Lip Cream	nyx	lipstick	lipstick	6.5	USD	NA	6
+884	Simply Nude Lip Cream	nyx	lipstick	lipstick	6.5	USD	NA	6
+883	Macaron Lippies	nyx	lipstick	lipstick	6.5	USD	NA	12
+882	In Your Element Lipstick - Metal	nyx	lipstick	lipstick	9	USD	NA	3
+880	Wicked Lippies	nyx	lipstick	lipstick	6.5	USD	NA	12
+879	Simply Vamp Lip Cream	nyx	lipstick	lipstick	6.5	USD	NA	6
+878	In Your Element Lipstick - Water	nyx	lipstick	lipstick	9	USD	NA	3
+877	In Your Element Lipstick - Wind	nyx	lipstick	lipstick	9	USD	NA	3
+876	In Your Element Lipstick - Fire	nyx	lipstick	lipstick	9	USD	NA	3
+875	In Your Element Lipstick - Air	nyx	lipstick	lipstick	9	USD	NA	3
+873	In Your Element Lipstick - Earth	nyx	lipstick	lipstick	9	USD	NA	3
+872	Butter Lipstick	nyx	lipstick	lipstick	6.5	USD	NA	34
+871	Extra Creamy Round Lipstick	nyx	lipstick	lipstick	0	USD	NA	86
+870	Matte Lipstick	nyx	lipstick	lipstick	6	USD	NA	45
+869	Pro Lip Cream Palette	nyx	lipstick	lipstick	12	USD	NA	4
+868	Full Throttle Lipstick	nyx	lipstick	lipstick	7	USD	NA	12
+867	Plush Gel Lipstick	nyx	lipstick	lipstick	7	USD	NA	12
+866	Velvet Matte Lipstick	nyx	lipstick	lipstick	7	USD	NA	12
+865	Turnt Up! Lipstick	nyx	lipstick	lipstick	6.5	USD	NA	22
+864	Pin-Up Pout Lipstick	nyx	lipstick	lipstick	8	USD	NA	24
+863	Super Cliquey Matte Lipstick	nyx	lipstick	lipstick	9	USD	NA	12
+862	Powder Puff Lippie Powder Lip Cream	nyx	lipstick	lipstick	8.5	USD	NA	8
+861	Lip Lustre Glossy Lip Tint	nyx	lip_gloss	lipstick	7	USD	NA	12
+860	Cosmic Metals Lip Cream	nyx	lip_gloss	lipstick	7.5	USD	NA	18
+859	Epic Ink Lip Dye	nyx	lip_gloss	lipstick	7	USD	NA	12
+858	Strictly Vinyl Lip Gloss	nyx	lip_gloss	lipstick	8	USD	NA	8
+857	Duo Chromatic Lip Gloss	nyx	lip_gloss	lipstick	8	USD	NA	10
+856	Slip Tease Full Color Lip Oil	nyx	lip_gloss	lipstick	7	USD	NA	12
+855	Liquid Suede Metallic Matte	nyx	lipstick	lipstick	7.5	USD	NA	12
+854	Liquid Suede Cream Lipstick	nyx	lipstick	lipstick	7	USD	NA	24
+853	Lip Lingerie	nyx	lipstick	lipstick	7	USD	NA	24
+852	Soft Matte Lip Cream	nyx	lipstick	lipstick	6.5	USD	NA	34
+851	Soft Matte Metallic Lip Cream	nyx	liquid	lipstick	7	USD	NA	12
+850	MATTEMOISELLE - Plush Matte Lipstick	fenty	lipstick	lipstick	18	USD	NA	14
+849	ECLIPSE - 2-in-1 Glitter Release Eyeliner	fenty	liquid	eyeliner	20	USD	NA	3
+848	COSMIC GLOSS - Lip Glitter	fenty	lip_gloss	lipstick	19	USD	NA	4
+847	MATCH STIX - Matte Skinstick	fenty	concealer	foundation	25	USD	NA	20
+826	Acne Solutions&trade; Clearing Concealer	clinique	concealer	foundation	18	USD	NA	3
+825	Line Smoothing Concealer	clinique	concealer	foundation	20	USD	NA	6
+824	All About Eyes&trade; Concealer	clinique	concealer	foundation	20	USD	NA	6
+823	Advanced Concealer	clinique	concealer	foundation	20	USD	NA	1
+822	Airbrush Concealer&trade;	clinique	concealer	foundation	22	USD	NA	12
+820	Beyond Perfecting&trade; Super Concealer Camouflage + 24-Hour Wear	clinique	concealer	foundation	19.5	USD	NA	18
+819	Moisture Surge&trade; CC Cream Hydrating Colour Corrector Broad Spectrum SPF 30	clinique	bb_cc	foundation	39	USD	NA	6
+817	Age Defense BB Cream<BR>Broad Spectrum SPF 30	clinique	bb_cc	foundation	38.5	USD	NA	4
+815	Wear Everywhere Neutrals All About Shadow&trade; 8-Pan Palette	clinique	palette	eyeshadow	37	USD	NA	5
+814	Pretty Easyâ„¢ Eye Palette	clinique	palette	eyeshadow	22.25	USD	NA	8
+808	Chubby Stick&trade; Shadow Tint For Eyes	clinique	pencil	eyeshadow	17.5	USD	NA	16
+804	Clinique + Jonathan Adler: Limited Edition Chic Colour Kit	clinique	palette	eyeshadow	27.3	USD	NA	0
+788	Chubby Stick&trade; Sculpting Highlight	clinique	contour	foundation	23	USD	NA	1
+787	Chubby Stick&trade; Sculpting Contour	clinique	contour	foundation	23	USD	NA	1
+786	Limited Edition Highlighting Kit	clinique	contour	foundation	39	USD	NA	0
+770	Chubby&trade; Plump & Shine Liquid Lip Plumping Gloss	clinique	lip_gloss	lipstick	17.5	USD	NA	8
+767	Almost Lipstick	clinique	lipstick	lipstick	17.5	USD	NA	2
+766	Butter Shine&trade; Lipstick	clinique	lipstick	lipstick	8.5	USD	NA	13
+765	High Impact&trade; Lip Colour	clinique	lipstick	lipstick	17.5	USD	NA	15
+764	Chubby Stick Intense&trade; Moisturizing Lip Colour Balm	clinique	lipstick	lipstick	17	USD	NA	9
+763	Long Last Soft Matte Lipstick	clinique	lipstick	lipstick	17.5	USD	NA	3
+762	Long Last Lipstick	clinique	lipstick	lipstick	17	USD	NA	26
+761	Clinique Pop Liquidâ„¢ Matte Lip Colour + Primer	clinique	lipstick	lipstick	18.5	USD	NA	8
+760	Chubby Stick Baby Tint&trade; Moisturizing Lip Colour Balm	clinique	lipstick	lipstick	17.5	USD	NA	4
+759	Clinique + Jonathan Adler: Pop Lip Colour + Primer	clinique	lipstick	lipstick	15.4	USD	NA	11
+758	Different Lipstick	clinique	lipstick	lipstick	17.5	USD	NA	15
+757	Clinique Popâ„¢ Lacquer Lip Colour + Primer  	clinique	lipstick	lipstick	18.5	USD	NA	10
+756	Clinique Pop Glaze&trade; Sheer Lip Colour + Primer	clinique	lipstick	lipstick	18.5	USD	NA	6
+755	Chubby Stick&trade; Moisturizing Lip Colour Balm	clinique	lipstick	lipstick	17.5	USD	NA	19
+754	Clinique Popâ„¢ Matte Lip Colour + Primer	clinique	lipstick	lipstick	18.5	USD	NA	16
+753	Clinique Pop&trade; Lip Colour + Primer	clinique	lipstick	lipstick	18.5	USD	NA	16
+752	Clinique Pop&trade; Lip Shadow Cushion Matte Lip Powder	clinique	lipstick	lipstick	19.5	USD	NA	8
+697	Couture Colour Wardrobe palette	dior	palette	eyeshadow	65	GBP	NA	1
+696	Colour Design Eye palette	dior	palette	eyeshadow	45	GBP	NA	1
+682	Diorskin Nude Air Glow Powder	dior	powder	foundation	39.5	GBP	NA	3
+681	Diorskin Nude Air loose powder	dior	powder	foundation	36.5	GBP	NA	4
+680	Diorskin nude air powder	dior	powder	foundation	36.5	GBP	NA	2
+679	DIORIFIC PRECIOUS ROCKS - Christmas 2017 Limited Edition	dior	powder	foundation	40	GBP	NA	1
+678	Diorskin Forever & Ever Control Loose Powder	dior	powder	foundation	36.5	GBP	NA	1
+677	Fix It Colour	dior	concealer	foundation	23.5	GBP	NA	4
+676	Diorskin Forever Undercover	dior	concealer	foundation	21	GBP	NA	11
+675	FIX IT	dior	concealer	foundation	23.5	GBP	NA	4
+674	FLASH LUMINIZER	dior	highlighter	foundation	29	GBP	NA	2
+673	Dior Addict Lip Maximizer	dior	lip_gloss	lipstick	25	GBP	NA	2
+672	Dior Addict Ultra-Gloss	dior	lip_gloss	lipstick	24	GBP	NA	22
+670	DIORIFIC MATTE FLUID - Christmas Look 2017 Limited Edition	dior	lipstick	lipstick	27.5	GBP	NA	2
+669	DIORIFIC KHÃ”L	dior	lipstick	lipstick	29.5	GBP	NA	5
+668	Diorific	dior	lipstick	lipstick	29.5	GBP	NA	10
+667	Dior Addict Lipstick - Limited Edition	dior	lipstick	lipstick	27.5	GBP	NA	5
+666	Dior Addict Lipstick	dior	lipstick	lipstick	27.5	GBP	NA	35
+665	DIOR ADDICT LACQUER STICK	dior	lipstick	lipstick	27.5	GBP	NA	20
+664	DIOR ADDICT LIP TATTOO	dior	lip_gloss	lipstick	25	GBP	NA	6
+663	ROUGE DIOR COLLECTION COUTURE - Christmas Look 2017 Limited Edition	dior	lipstick	lipstick	29.5	GBP	NA	1
+662	Dior Holiday Couture Collection	dior	lipstick	lipstick	77	GBP	NA	0
+661	ROUGE DIOR - Fall 2017 Limited Edition	dior	lipstick	lipstick	27.5	GBP	NA	4
+660	Rouge Dior	dior	lipstick	lipstick	27.5	GBP	NA	36
+659	Rouge Dior Double Rouge	dior	lipstick	lipstick	27.5	GBP	NA	6
+658	Rouge Dior Liquid	dior	lipstick	lipstick	26.5	GBP	NA	24
+644	the POREfessional: agent zero shine	benefit	powder	foundation	39	UNKNOWN	NA	0
+643	hello flawless! powder foundation	benefit	powder	foundation	44	UNKNOWN	NA	9
+624	hydra-smooth lip color	benefit	lipstick	lipstick	23	UNKNOWN	NA	10
+623	BIG sexy lipstick set	benefit	lipstick	lipstick	38	UNKNOWN	NA	0
+622	ultra plush lip gloss	benefit	lip_gloss	lipstick	19	UNKNOWN	NA	6
+621	hoola ultra plush	benefit	lip_gloss	lipstick	21	UNKNOWN	NA	0
+620	CORALista ultra plush	benefit	lip_gloss	lipstick	21	UNKNOWN	NA	0
+619	rockateur ultra plush	benefit	lip_gloss	lipstick	21	UNKNOWN	NA	0
+618	hervana ultra plush	benefit	lip_gloss	lipstick	21	UNKNOWN	NA	0
+617	dandelion ultra plush	benefit	lip_gloss	lipstick	21	UNKNOWN	NA	0
+616	sugarbomb ultra plush	benefit	lip_gloss	lipstick	21	UNKNOWN	NA	0
+615	lollibalm	benefit	lip_gloss	lipstick	23	UNKNOWN	NA	0
+614	chachabalm	benefit	lip_gloss	lipstick	23	UNKNOWN	NA	0
+613	posiebalm	benefit	lip_gloss	lipstick	23	UNKNOWN	NA	0
+612	benebalm	benefit	lip_gloss	lipstick	23	UNKNOWN	NA	0
+605	BADgal waterproof eyeliner	benefit	liquid	eyeliner	26	UNKNOWN	NA	3
+604	creaseless cream eyeshadow	benefit	liquid	eyeliner	26	UNKNOWN	NA	10
+603	they're real! gel eyeliner pen 	benefit	liquid	eyeliner	31	UNKNOWN	NA	5
+551	24 Hour CC Spot Concealer	smashbox	bb_cc	foundation	25	UNKNOWN	NA	7
+550	Camera Ready BB Cream Eyes SPF 15	smashbox	bb_cc	foundation	25	UNKNOWN	NA	8
+549	Photo Filter Foundation	smashbox	liquid	foundation	42	UNKNOWN	NA	10
+548	Halo Hydrating Powder	smashbox	liquid	foundation	49	UNKNOWN	NA	8
+547	Halo HD Foundation SPF 15	smashbox	liquid	foundation	45	UNKNOWN	NA	5
+546	Camera Ready CC Cream	smashbox	bb_cc	foundation	42	UNKNOWN	NA	8
+545	Camera Ready BB Cream SPF 35	smashbox	bb_cc	foundation	39	UNKNOWN	NA	8
+544	Camera Ready BB Water SPF 30	smashbox	bb_cc	foundation	42	UNKNOWN	NA	7
+543	STUDIO SKIN 15 HOUR WEAR HYDRATING FOUNDATION 	smashbox	liquid	foundation	42	UNKNOWN	NA	22
+536	Jet Set Waterproof Eye Liner	smashbox	liquid	eyeliner	22	UNKNOWN	NA	2
+535	Photo Angle Gel Liner	smashbox	liquid	eyeliner	24	UNKNOWN	NA	3
+534	Limitless Eye Liner	smashbox	liquid	eyeliner	19	UNKNOWN	NA	0
+533	Limitless Liquid Liner	smashbox	liquid	eyeliner	22	UNKNOWN	NA	2
+532	Always Sharp 3D Liner	smashbox	liquid	eyeliner	20	UNKNOWN	NA	8
+531	Always Sharp Waterproof Kohl Liner	smashbox	liquid	eyeliner	21	UNKNOWN	NA	8
+530	Double Exposure Palette	smashbox	palette	eyeshadow	50	UNKNOWN	NA	14
+528	Mini Full Exposure Palette	smashbox	palette	eyeshadow	25	UNKNOWN	NA	4
+527	Full Exposure Palette	smashbox	palette	eyeshadow	52	UNKNOWN	NA	0
+524	MATTE EXPOSURE PALETTE	smashbox	palette	eyeshadow	49	UNKNOWN	NA	0
+521	BE LEGENDARY LONG-WEAR LIP LACQUER	smashbox	lipstick	lipstick	24	UNKNOWN	NA	3
+519	Always Sharp Lip Liner	smashbox	lipstick	lipstick	21	UNKNOWN	NA	15
+518	Insta-Matte Lipstick Transformer	smashbox	lipstick	lipstick	24	UNKNOWN	NA	0
+517	BE LEGENDARY LIPSTICK Ã— FOSTER SISTERS	smashbox	lipstick	lipstick	21	UNKNOWN	NA	2
+516	Be Legendary Lipstick	smashbox	lipstick	lipstick	21	UNKNOWN	NA	120
+515	ALWAYS ON LIQUID LIPSTICK	smashbox	lipstick	lipstick	24	UNKNOWN	NA	20
+474	NYX Ombre Blush	nyx	powder	blush	12.99	UNKNOWN	NA	0
+473	CoverGirl truBLEND Blush in Light Rose	covergirl	powder	blush	13.99	UNKNOWN	NA	0
+472	Cargo Cosmetics HD Picture Perfect Blush Highlighter	cargo cosmetics	powder	blush	32	UNKNOWN	NA	2
+468	Maybelline Face Studio Master Hi-Light Light Booster Blush	maybelline	powder	blush	14.99	UNKNOWN	NA	0
+467	Sante Rouge	sante	powder	blush	23.49	UNKNOWN	3	0
+465	CoverGirl truBLEND Blush in Medium Rose	covergirl	powder	blush	13.99	UNKNOWN	5	0
+464	Annabelle Blush 	annabelle	powder	blush	7.99	UNKNOWN	NA	5
+463	NYX High Definition Blush	nyx	powder	blush	7.99	UNKNOWN	4	10
+460	Cargo Cosmetics Swimmables Water Resistant Blush	cargo cosmetics	powder	blush	29	UNKNOWN	5	2
+459	Mineral Fusion Blush	mineral fusion	powder	blush	32	UNKNOWN	5	3
+458	CoverGirl Clean Glow Blush 	covergirl	powder	blush	8.99	UNKNOWN	5	0
+457	CoverGirl Clean Glow Blush	covergirl	powder	blush	8.99	UNKNOWN	NA	0
+456	Physicians Formula Nude Wear Glowing Nude Blush	physicians formula	powder	blush	15.99	UNKNOWN	4	0
+455	CoverGirl Cheekers Blush 	covergirl	powder	blush	6.99	UNKNOWN	5	0
+454	e.l.f. Studio Blush Palette Dark	e.l.f.	powder	blush	9.99	UNKNOWN	NA	4
+453	Revlon Powder Blush 	revlon	powder	blush	13.49	UNKNOWN	5	7
+452	Maybelline Face Studio Master Hi-Light Light Booster Blush 	maybelline	powder	blush	14.99	UNKNOWN	5	0
+451	Physicians Formula Nude Wear Glowing Nude Blush 	physicians formula	powder	blush	15.99	UNKNOWN	4	0
+449	CoverGirl Cheekers Blush	covergirl	powder	blush	6.99	UNKNOWN	5	0
+448	Almay Smart Shade Powder Blush	almay	powder	blush	14.49	UNKNOWN	4	3
+447	L'Oreal Paris True Match	l'oreal	powder	blush	16.49	UNKNOWN	4.8	1
+446	Physicians Formula Happy Booster Glow & Mood Boosting Blush	physicians formula	powder	blush	15.99	UNKNOWN	4.7	0
+445	Pure Anada Loose Mineral Luminous Blush	pure anada	powder	blush	12	UNKNOWN	4	3
+444	Physicians Formula Mineral Wear Airbrushing Blush	physicians formula	powder	blush	15.49	UNKNOWN	4.8	2
+443	CoverGirl Instant Cheekbones Contouring Blush	covergirl	powder	blush	7.99	UNKNOWN	3.3	0
+442	Physicians Formula Happy Booster Glow & Mood Boosting Powder	physicians formula	powder	blush	19.99	UNKNOWN	4.8	0
+441	e.l.f. Studio Blush Palette Light	e.l.f.	powder	blush	9.99	UNKNOWN	4.7	4
+440	Pure Anada Loose Mineral Velvet Matte Blush 	pure anada	powder	blush	12	UNKNOWN	4.5	3
+439	Maybelline Fit Me Blush	maybelline	powder	blush	10.29	UNKNOWN	4.8	7
+437	Pure Anada Pressed Mineral Cheek Colour Pan	pure anada	powder	blush	12	UNKNOWN	4.4	8
+436	Milani Rose Powder Blush	milani	powder	blush	9.99	UNKNOWN	4.6	3
+435	Milani Baked Blush	milani	powder	blush	7.99	UNKNOWN	4.7	7
+434	Cargo Cosmetics Blush	cargo cosmetics	powder	blush	26	UNKNOWN	4.8	5
+429	Physicians Formula Argan Wear Ultra-Nourishing Argan Oil Blush in Rose	physicians formula	powder	blush	15.99	UNKNOWN	5	0
+428	Stila Convertible Colour Palette Sinrise Splendor	stila	cream	blush	51	UNKNOWN	NA	0
+427	Stila Convertible Colour Palette Sunset Serenade	stila	cream	blush	51	UNKNOWN	NA	0
+421	Anna Sui Cream Cheek Colour	anna sui	cream	blush	27	UNKNOWN	NA	6
+420	NYX Rouge Cream Blush	nyx	cream	blush	9.99	UNKNOWN	2	5
+419	L'Oreal Paris Visible Lift Blur Blush 	l'oreal	cream	blush	15.99	UNKNOWN	NA	2
+418	Marcelle Cream Blush	marcelle	cream	blush	14.99	UNKNOWN	5	4
+417	Revlon PhotoReady Cream Blush	revlon	cream	blush	13.49	UNKNOWN	5	0
+415	Physicians Formula Super BB All-in-1 Beauty Balm Cheek & Lip in Berry Pink	physicians formula	cream	blush	8.99	UNKNOWN	4	0
+414	Maybelline Dream Bouncy Blush	maybelline	cream	blush	11.99	UNKNOWN	4.5	4
+413	Anna Sui Lip Colour Stain	anna sui	lip_stain	lipstick	26	UNKNOWN	NA	6
+412	Revlon Colorstay Moisture Stain	revlon	lip_stain	lipstick	12.99	UNKNOWN	4	0
+411	Revlon ColorBurst Balm Stain	revlon	lip_stain	lipstick	11.49	UNKNOWN	4	7
+410	Wet n Wild Mega Slicks Lip Balm Stain	wet n wild	lip_stain	lipstick	3.99	UNKNOWN	4.2	5
+391	Marcelle Flawless Compact Foundation	marcelle	cream	foundation	17.99	UNKNOWN	NA	6
+390	Revlon PhotoReady Insta-Fix Makeup	revlon	cream	foundation	19.99	UNKNOWN	NA	9
+389	Marcelle BB Cream-to-Powder Makeup	marcelle	cream	foundation	22.99	UNKNOWN	5	2
+388	Physicians Formula Super BB All-in-1 Beauty Balm Stick	physicians formula	cream	foundation	12.99	UNKNOWN	2.5	2
+387	Physicians Formula Nude Wear Touch of Glow Stick in Nude Glow	physicians formula	cream	foundation	12.99	UNKNOWN	4	0
+386	CoverGirl & Olay Simply Ageless Foundation 	covergirl	cream	foundation	15.99	UNKNOWN	5	0
+385	Sante Soft Cream Foundation	sante	cream	foundation	27.49	UNKNOWN	3.8	0
+384	CoverGirl Ultimate Finish Liquid Powder Makeup 	covergirl	cream	foundation	9.99	UNKNOWN	5	0
+383	Revlon Colorstay Whipped Creme Makeup	revlon	cream	foundation	19.99	UNKNOWN	4.4	5
+382	Maybelline Dream Smooth Mousse Foundation	maybelline	cream	foundation	14.79	UNKNOWN	3.8	0
+381	Revlon New Complexion One-Step Makeup	revlon	cream	foundation	18.29	UNKNOWN	4.2	6
+380	Maybelline Fit Me Shine-Free Foundation Stick	maybelline	cream	foundation	10.99	UNKNOWN	4.7	6
+379	Maybelline Dream Matte Mousse Foundation	maybelline	cream	foundation	14.79	UNKNOWN	4.4	6
+378	e.l.f. Studio HD Mattifying Cream Foundation	e.l.f.	cream	foundation	9.99	UNKNOWN	4.8	1
+377	Mineral Fusion Sheer Tint Foundation	mineral fusion	cream	foundation	37	UNKNOWN	NA	0
+376	Pure Anada Loose mineral foundation	pure anada	mineral	foundation	25.99	UNKNOWN	NA	20
+375	Dr. Hauschka Translucent Face Powder Compact	dr. hauschka	mineral	foundation	35	UNKNOWN	NA	0
+374	Physicians Formula Mineral Wear Talc-Free All-In-One ABC Cushion Foundation	physicians formula	mineral	foundation	20.49	UNKNOWN	4	3
+373	NYX Mineral Stick Foundation	nyx	mineral	foundation	11.99	UNKNOWN	5	4
+372	NYX Stay Matte But Not Flat Powder Foundation	nyx	mineral	foundation	10.99	UNKNOWN	NA	3
+371	Milani Cream-To-Powder Makeup	milani	cream	foundation	10.99	UNKNOWN	4.4	4
+370	Physicians Formula Mineral Wear Flawless Complexion Kit 	physicians formula	powder	blush	29.99	UNKNOWN	4.8	0
+369	Physicians Formula Mineral Wear Correcting Kit 	physicians formula	mineral	foundation	29.99	UNKNOWN	4.7	0
+368	Physicians Formula Mineral Wear Airbrushing Pressed Powder 	physicians formula	mineral	foundation	19.99	UNKNOWN	4.7	2
+367	Pure Anada Pressed Sheer Matte Foundation Pan	pure anada	mineral	foundation	19	UNKNOWN	4.3	2
+366	Maybelline Mineral Power Natural Perfecting Powder Foundation	maybelline	mineral	foundation	14.99	UNKNOWN	3.9	1
+365	Physicians Formula Mineral Wear Airbrushing Loose Powder 	physicians formula	mineral	foundation	14.99	UNKNOWN	4.6	3
+364	Pure Anada Loose Mineral Foundation 	pure anada	mineral	foundation	12	UNKNOWN	3.9	9
+362	CoverGirl Outlast Stay Luminous Foundation Creamy Natural (820) 	covergirl	liquid	foundation	12.49	UNKNOWN	NA	4
+356	Mineral Fusion Liquid Foundation	mineral fusion	liquid	foundation	37	UNKNOWN	4	2
+354	Maybelline Dream Velvet Foundation	maybelline	cream	foundation	18.49	UNKNOWN	2.5	12
+353	Maybelline Superstay Better Skin Foundation 	maybelline	liquid	foundation	14.99	UNKNOWN	3	5
+352	NYX Stay Matte But Not Flat Liquid Foundation	nyx	liquid	foundation	10.99	UNKNOWN	4	5
+350	L'Oreal Paris True Match Lumi Glow Liquid Foundation	l'oreal	liquid	foundation	16.99	UNKNOWN	3	3
+349	CoverGirl Ready, Set Gorgeous Liquid Makeup 105	covergirl	liquid	foundation	8.99	UNKNOWN	2	7
+348	CoverGirl Outlast Stay Fabulous 3-in-1 Foundation	covergirl	liquid	foundation	12.49	UNKNOWN	NA	0
+345	L'Oreal Paris Visible Lift Blur Foundation 	l'oreal	liquid	foundation	18.99	UNKNOWN	NA	8
+344	CoverGirl Clean Liquid Makeup Normal Skin 	covergirl	liquid	foundation	9.49	UNKNOWN	5	0
+343	Cargo Cosmetics Liquid Foundation	cargo cosmetics	liquid	foundation	42	UNKNOWN	NA	11
+342	CoverGirl Smoothers All-Day Hydrating Makeup 	covergirl	liquid	foundation	8.99	UNKNOWN	NA	0
+341	CoverGirl Clean Oil Control Makeup 	covergirl	liquid	foundation	9.49	UNKNOWN	4	0
+340	Physicians Formula Nude Wear Touch of Glow Foundation	physicians formula	liquid	foundation	18.49	UNKNOWN	4.5	1
+339	Maybelline Dream Wonder Liquid Touch Foundation	maybelline	liquid	foundation	14.99	UNKNOWN	NA	1
+338	CoverGirl Advanced Radiance Age Defying Liquid Makeup 	covergirl	liquid	foundation	12.49	UNKNOWN	5	0
+337	Revlon Photoready Airbrush Effect Makeup	revlon	liquid	foundation	19.99	UNKNOWN	NA	12
+336	Revlon Age Defying Firming + Lifting Makeup	revlon	liquid	foundation	19.99	UNKNOWN	4.5	1
+335	L'Oreal Paris True Match Lumi Cushion Foundation	l'oreal	liquid	foundation	26.99	UNKNOWN	4	8
+334	Cargo Cosmetics OneBase for Face	cargo cosmetics	liquid	foundation	28	UNKNOWN	5	6
+333	Physicians Formula Youthful Wear Spotless Foundation	physicians formula	liquid	foundation	18.49	UNKNOWN	4.7	2
+332	Annabelle SkinTrue Foundation	annabelle	liquid	foundation	10.99	UNKNOWN	5	5
+331	Almay Smart Shade Skintone Matching Makeup 	almay	liquid	foundation	17.29	UNKNOWN	4.5	3
+330	L'Oreal Visible Lift Serum Absolute	l'oreal	liquid	foundation	20.49	UNKNOWN	4.3	4
+329	Almay Smart Shade Anti-Aging Skintone Matching Makeup	almay	liquid	foundation	17.29	UNKNOWN	4.2	3
+328	Almay Truly Lasting Color Makeup	almay	liquid	foundation	17.29	UNKNOWN	4.5	3
+327	CoverGirl Outlast Stay Fabulous 3-in-1 Foundation 	covergirl	liquid	foundation	12.49	UNKNOWN	4	0
+326	L'Oreal Paris True Match Lumi Healthy Luminous Foundation	l'oreal	liquid	foundation	20.99	UNKNOWN	5	5
+325	L'Oreal Paris Infallible Pro-Matte Foundation	l'oreal	liquid	foundation	19.99	UNKNOWN	4.3	9
+324	Revlon ColorStay Makeup for Normal / Dry Skin	revlon	liquid	foundation	19.99	UNKNOWN	4.6	4
+323	Dr. Hauschka Foundation	dr. hauschka	liquid	foundation	39	UNKNOWN	4.7	5
+322	e.l.f. Studio Flawless Finish Foundation	e.l.f.	liquid	foundation	9.99	UNKNOWN	4	2
+321	Maybelline Dream Liquid Mousse	maybelline	liquid	foundation	14.79	UNKNOWN	4.4	5
+320	Maybelline FIT ME! Matte + Poreless Foundation	maybelline	liquid	foundation	10.99	UNKNOWN	4.4	11
+319	Revlon ColorStay Makeup for Combination / Oily Skin	revlon	liquid	foundation	19.99	UNKNOWN	3.8	3
+318	L'Oreal Paris True Match Super Blendable Makeup 	l'oreal	liquid	foundation	18.79	UNKNOWN	4.1	10
+317	Maybelline Fit Me Foundation with SPF	maybelline	liquid	foundation	10.99	UNKNOWN	3.8	4
+316	Pure Anada Smooth & Conceal Liquid Foundation	pure anada	liquid	foundation	25	UNKNOWN	4.1	13
+315	e.l.f. Studio Tinted Moisturizer	e.l.f.	liquid	foundation	4.99	UNKNOWN	3.8	3
+313	CoverGirl Trunaked Eyeshadow Palettes in Roses	covergirl	palette	eyeshadow	12.99	UNKNOWN	5	0
+311	L'Oreal Colour Riche La Palette Nude in Nude 02	l'oreal	palette	eyeshadow	29.99	UNKNOWN	4	0
+306	Physicians Formula Shimmer Strips Extreme Shimmer Shadow & Liner Palette 	physicians formula	palette	eyeshadow	15.79	UNKNOWN	4.5	0
+304	e.l.f. Essential Little Black Beauty Book Eye Edition	e.l.f.	palette	eyeshadow	9.99	UNKNOWN	4	0
+298	Revlon PhotoReady Primer, Shadow + Sparkle Palette	revlon	palette	eyeshadow	14.49	UNKNOWN	5	0
+295	Maybelline The Nudes Eye Shadow Palette	maybelline	palette	eyeshadow	17.99	UNKNOWN	2	0
+293	e.l.f. Mad for Matte Eyeshadow Palette 	e.l.f.	palette	eyeshadow	11.99	UNKNOWN	4.4	0
+290	Dr. Hauschka Eye Shadow Palette	dr. hauschka	palette	eyeshadow	43	UNKNOWN	4.8	0
+288	Pacifica Mystical Supernatural Eye Shadow Palette	pacifica	palette	eyeshadow	28	UNKNOWN	4.9	4
+286	Maybelline The Nudes Eyeshadow Palette in The Blushed Nudes	maybelline	palette	eyeshadow	17.99	UNKNOWN	4.5	0
+284	e.l.f. Studio Prism Eyeshadow	e.l.f.	palette	eyeshadow	13.99	UNKNOWN	4.8	6
+283	Pacifica Enlighten Eye Brightening Shadow Palette	pacifica	palette	eyeshadow	28	UNKNOWN	4.6	4
+282	Wet n Wild Color Icon Eye Shadow Collection	wet n wild	palette	eyeshadow	4.99	UNKNOWN	4.2	0
+278	Pacifica Radiant Shimmer Highlighting Creams For Eyes Lips Face	pacifica	powder	blush	28	UNKNOWN	3.6	3
+271	CoverGirl Trunaked Waterproof Eyeliner Duo in Mocha/Ebony	covergirl	pencil	eyeliner	11.99	UNKNOWN	NA	0
+270	Anna Sui Eye Brightener	anna sui	pencil	eyeliner	28	UNKNOWN	NA	0
+268	Anna Sui Sharpener	anna sui	pencil	eyeliner	10	UNKNOWN	NA	0
+267	CoverGirl Bombshell Powder Brow & Liner in Dark Brown	covergirl	pencil	eyeliner	9.49	UNKNOWN	3	0
+266	Anna Sui Pencil Eyeliner WP	anna sui	pencil	eyeliner	26	UNKNOWN	NA	5
+265	CoverGirl Trunaked Waterproof Eyeliner Duo in Cashmere/Espresso	covergirl	pencil	eyeliner	11.99	UNKNOWN	NA	0
+264	Revlon PhotoReady Kajal Matte Eye Pencil	revlon	pencil	eyeliner	11.49	UNKNOWN	NA	0
+262	Physicians Formula Shimmer Strips Extreme Shimmer Pencil + Smudger Trio	physicians formula	pencil	eyeliner	15.99	UNKNOWN	NA	0
+261	CoverGirl Full Lash Bloom Mascara + Perfect Point Plus Eye Liner	covergirl	pencil	eyeliner	14.99	UNKNOWN	NA	0
+260	L'Oreal Infallible Smokissime Powder Eyeliner Pen	l'oreal	pencil	eyeliner	12.99	UNKNOWN	2.5	2
+259	Physicians Formula Shimmer Strips Extreme Shimmer Eyeliner Trio in Nude 	physicians formula	pencil	eyeliner	14.79	UNKNOWN	NA	0
+258	Milani Supreme Kohl Kajal Eyeliner	milani	pencil	eyeliner	8.99	UNKNOWN	5	0
+257	Annabelle Retractable Eyeliner	annabelle	pencil	eyeliner	9.99	UNKNOWN	5	2
+255	Cargo Cosmetics Swimmables Eye Pencil	cargo cosmetics	pencil	eyeliner	19	UNKNOWN	4.7	6
+253	Annabelle Smudgeliner 	annabelle	pencil	eyeliner	8.99	UNKNOWN	5	1
+252	Mineral Fusion Eye Pencil	mineral fusion	pencil	eyeliner	19	UNKNOWN	4.5	1
+251	Wet n Wild Sharpen Up! Dual Pencil Sharpener	wet n wild	pencil	eyeliner	1.99	UNKNOWN	5	0
+250	CoverGirl Ink it! By Perfect Point Plus Eyeliner 	covergirl	pencil	eyeliner	6.99	UNKNOWN	NA	0
+249	Annabelle Stay Sharp Waterproof Kohl Eyeliner	annabelle	pencil	eyeliner	9.99	UNKNOWN	NA	6
+248	Pacifica Natural Eye Pencil	pacifica	pencil	eyeliner	16	UNKNOWN	5	0
+247	CoverGirl Liquiline Blast Eyeliner 	covergirl	pencil	eyeliner	9.99	UNKNOWN	4.5	0
+246	Annabelle Smoothliner 	annabelle	pencil	eyeliner	6.99	UNKNOWN	4.8	1
+244	Marcelle Waterproof Eyeliner	marcelle	pencil	eyeliner	10.99	UNKNOWN	3	14
+243	Physicians Formula Shimmer Strips Eye Enhancing Eyeliner Trio 	physicians formula	pencil	eyeliner	14.79	UNKNOWN	5	0
+242	L'Oreal Paris Infallible Silkissime Eyeliner	l'oreal	pencil	eyeliner	11.99	UNKNOWN	5	7
+240	L'Oreal Paris Extra-Intense Liquid Pencil Eyeliner	l'oreal	pencil	eyeliner	10.99	UNKNOWN	4.3	1
+239	CoverGirl Ink it! By Perfect Point Plus Eyeliner	covergirl	pencil	eyeliner	6.99	UNKNOWN	2.5	0
+238	Physicians Formula Shimmer Strips Eye Enhancing Eyeliner Trio	physicians formula	pencil	eyeliner	14.79	UNKNOWN	5	0
+237	CoverGirl Perfect Point Plus Eyeliner Pencil 	covergirl	pencil	eyeliner	7.49	UNKNOWN	4	0
+236	Milani Brow & Eye Highlighter Duo Pencil	milani	pencil	eyeliner	6.99	UNKNOWN	3.3	2
+235	L'Oreal Paris Infallible Never Fail Eye Liner	l'oreal	pencil	eyeliner	12.99	UNKNOWN	3.5	3
+234	Sante Kajal Eyeliner Pencil	sante	pencil	eyeliner	17.29	UNKNOWN	3.9	3
+233	Dr. Hauschka Kajal Eyeliner	dr. hauschka	pencil	eyeliner	24	UNKNOWN	4.4	4
+232	Maybelline Line Express Eyeliner	maybelline	pencil	eyeliner	7.29	UNKNOWN	4.5	0
+231	Almay Intense i-Colour Bring Out Eyeliner	almay	pencil	eyeliner	10.99	UNKNOWN	4.3	3
+230	Maybelline Unstoppable Eyeliner	maybelline	pencil	eyeliner	8.99	UNKNOWN	4.3	2
+229	Pure Anada Pureline Pencil Eye Liner	pure anada	pencil	eyeliner	14	UNKNOWN	4	2
+228	L'Oreal Paris Colour Riche Le Khol Eyeliner	l'oreal	pencil	eyeliner	9.29	UNKNOWN	4.5	2
+226	Revlon ColorStay Eye Liner	revlon	pencil	eyeliner	11.49	UNKNOWN	4.7	0
+225	Maybelline Color Show Kohl Liner	maybelline	pencil	eyeliner	5.99	UNKNOWN	NA	8
+224	Stila La Quill Eye Liner Brush	stila	liquid	eyeliner	36	UNKNOWN	NA	0
+223	NYX Super Fat Eye Marker	nyx	liquid	eyeliner	11.99	UNKNOWN	NA	0
+222	CoverGirl Bombshell Powder Brow & Liner in Blonde	covergirl	pencil	eyeliner	9.49	UNKNOWN	NA	0
+221	Maybelline Eye Studio Master Graphic in Striking Black	maybelline	liquid	eyeliner	11.99	UNKNOWN	NA	0
+220	CoverGirl Intensify Me! Liquid Liner	covergirl	liquid	eyeliner	9.99	UNKNOWN	NA	0
+216	L'Oreal Paris Infallible Black Velvet Liner	l'oreal	liquid	eyeliner	13.99	UNKNOWN	NA	0
+215	Milani Eye Tech Bold Liquid Eyeliner	milani	liquid	eyeliner	10.99	UNKNOWN	NA	0
+212	Cargo Cosmetics TexasLiner Liquid Eye Liner	cargo cosmetics	liquid	eyeliner	22	UNKNOWN	NA	0
+211	Wet n Wild ProLine Graphic Marker Eyeliner	wet n wild	pencil	eyeliner	6.99	UNKNOWN	NA	2
+209	Annabelle EyeInk2 Liquid Eyeliner Duo	annabelle	liquid	eyeliner	10.99	UNKNOWN	NA	2
+207	Annabelle Glitterama Liquid Eyeliner	annabelle	liquid	eyeliner	8.96	UNKNOWN	NA	1
+206	Wet n Wild ProLine Felt Tip Eyeliner	wet n wild	liquid	eyeliner	6.99	UNKNOWN	4	2
+204	Marcelle Double Precision Liquid Eyeliner Pen	marcelle	liquid	eyeliner	14.99	UNKNOWN	NA	0
+203	Annabelle EyeInk2 Mistake Proof Eyeliner + Corrector	annabelle	liquid	eyeliner	10.99	UNKNOWN	5	2
+202	CoverGirl Ink It! By Perfect Point Plus Violet Ink	covergirl	liquid	eyeliner	6.99	UNKNOWN	NA	0
+201	Marcelle Kajal Kohl Eyeliner Blackest Black	marcelle	liquid	eyeliner	11.99	UNKNOWN	5	0
+200	Wet n Wild H2O Proof Liquid Eyeliner	wet n wild	liquid	eyeliner	6.99	UNKNOWN	NA	2
+199	Milani Eye Tech Extreme Liquid Eyeliner	milani	liquid	eyeliner	10.99	UNKNOWN	NA	0
+198	Marcelle Waterproof Liquid DIP-PEN Eyeliner 10H+	marcelle	liquid	eyeliner	13.99	UNKNOWN	NA	4
+197	Physicians Formula Sexy Booster Cat Eye Collection Liquid Eyeliner 	physicians formula	liquid	eyeliner	12.99	UNKNOWN	NA	0
+196	Physicians Formula Argan Wear Ultra-Nourishing Kohl Kajal Eyeliner	physicians formula	liquid	eyeliner	12.99	UNKNOWN	3.7	0
+194	Wet n Wild MegaLiner Liquid Eyeliner	wet n wild	liquid	eyeliner	5.49	UNKNOWN	NA	2
+193	Revlon ColorStay Skinny Liquid Liner 	revlon	liquid	eyeliner	11.99	UNKNOWN	NA	3
+192	Physicians Formula Shimmer Strips Kohl Kajal Eyeliner Trio 	physicians formula	liquid	eyeliner	14.79	UNKNOWN	5	0
+191	Zorah Liquid Liner	zorah	liquid	eyeliner	24	UNKNOWN	3.3	2
+190	Milani Fierce Foil Eyeliner	milani	liquid	eyeliner	9.99	UNKNOWN	NA	4
+189	Physicians Formula Shimmer Strips Kohl Kajal Eyeliner Trio	physicians formula	liquid	eyeliner	14.79	UNKNOWN	5	0
+187	Suncoat Sugar-based Natural Liquid Eyeliner	suncoat	liquid	eyeliner	16.99	UNKNOWN	3.5	0
+186	Dr. Hauschka Liquid Eyeliner	dr. hauschka	liquid	eyeliner	30	UNKNOWN	4	0
+185	Almay Liquid Liner	almay	liquid	eyeliner	10.99	UNKNOWN	4.2	2
+184	L'Oreal Infallible Super Slim 12H Liner	l'oreal	liquid	eyeliner	11.99	UNKNOWN	NA	0
+183	e.l.f. Intense Ink Eyeliner	e.l.f.	liquid	eyeliner	3.99	UNKNOWN	5	0
+181	L'Oreal Telescopic Explosion Waterproof Eyeliner Black	l'oreal	liquid	eyeliner	12.99	UNKNOWN	4.2	0
+180	e.l.f. Studio Precision Liquid Eyeliner	e.l.f.	liquid	eyeliner	4.99	UNKNOWN	3.7	0
+179	Maybelline EyeStudio Master Precise Ink Pen Eyeliner	maybelline	liquid	eyeliner	11.99	UNKNOWN	4	0
+178	Almay Intense i-Colour Play Up Liquid Liner	almay	liquid	eyeliner	10.99	UNKNOWN	4	2
+177	Maybelline Line Stiletto Ultimate Precision Liquid Eyeliner	maybelline	liquid	eyeliner	10.29	UNKNOWN	4	2
+176	e.l.f. Studio Eye Primer & Liner Sealer	e.l.f.	liquid	eyeliner	4.99	UNKNOWN	4.3	0
+175	Revlon ColorStay Liquid Eye Liner	revlon	liquid	eyeliner	11.49	UNKNOWN	4	2
+174	L'Oreal Paris Lineur Intense Felt Tip Liquid	l'oreal	liquid	eyeliner	10.99	UNKNOWN	4.3	1
+173	Physicians Formula Eye Booster Lash Boosting Eyeliner + Serum	physicians formula	liquid	eyeliner	14.79	UNKNOWN	4	3
+172	Maybelline Liquid Eyeliner	maybelline	liquid	eyeliner	10.99	UNKNOWN	4.2	1
+171	e.l.f. Studio Cream Eyeliner	e.l.f.	liquid	eyeliner	4.99	UNKNOWN	4.5	2
+170	Maybelline Eye Studio Lasting Drama Gel Eyeliner	maybelline	liquid	eyeliner	11.99	UNKNOWN	4.4	3
+169	CoverGirl LineExact Liquid Eyeliner 	covergirl	liquid	eyeliner	7.49	UNKNOWN	4.3	0
+114	CoverGirl Outlast Longwear Lipstick	covergirl	lipstick	lipstick	10.99	UNKNOWN	NA	3
+113	CoverGirl Outlast Lipcolor Moisturizing Clear Topcoat (500)	covergirl	lipstick	lipstick	12.99	UNKNOWN	NA	0
+107	butter LONDON Moisture Matte Lipstick	butter london	lipstick	lipstick	28.96	UNKNOWN	NA	3
+106	L'Oreal Paris Colour Riche Le Matte & La Lacque Lip Colour	l'oreal	lipstick	lipstick	11.49	UNKNOWN	NA	8
+105	CoverGirl Colorlicious Lipstick	covergirl	lipstick	lipstick	10.49	UNKNOWN	NA	2
+102	CoverGirl Outlast Lipcolor	covergirl	lipstick	lipstick	12.99	UNKNOWN	5	6
+101	Mineral Fusion Sheer Moisture Lip Tint	mineral fusion	lipstick	lipstick	12	UNKNOWN	NA	5
+99	Dr. Hauschka Limited Edition Lipstick Novum	dr. hauschka	lipstick	lipstick	27	UNKNOWN	5	0
+98	Marcelle Rouge Xpression Lipstick	marcelle	lipstick	lipstick	11.99	UNKNOWN	NA	21
+97	Maybelline Color Sensational Vivid Matte Liquid Lip Colour	maybelline	lipstick	lipstick	12.99	UNKNOWN	NA	10
+96	Revlon Ultra HD Lip Lacquer	revlon	lipstick	lipstick	10.99	UNKNOWN	5	13
+95	NYX Jumbo Lip Pencil 	nyx	lipstick	lipstick	5.99	UNKNOWN	4	7
+94	Cargo Cosmetics ColorStick	cargo cosmetics	lipstick	lipstick	32	UNKNOWN	4	5
+93	Revlon ColorBurst Lacquer Balm	revlon	lipstick	lipstick	11.49	UNKNOWN	NA	4
+92	Cargo Cosmetics Essential Lip Color	cargo cosmetics	lipstick	lipstick	24	UNKNOWN	4.8	12
+91	L'Oreal Paris Colour Riche Collection Exclusive Pure Reds	l'oreal	lipstick	lipstick	10.99	UNKNOWN	5	6
+90	NYX Extra Creamy Round Lipstick	nyx	lipstick	lipstick	6.99	UNKNOWN	4	23
+89	Maybelline Color Sensational Rebel Bloom Lipcolour 	maybelline	lipstick	lipstick	9.99	UNKNOWN	3	6
+87	DaLish Lipstick Matte Collection	dalish	lipstick	lipstick	22	UNKNOWN	3.8	5
+86	e.l.f. Gotta Glow Lip Tint 	e.l.f.	lipstick	lipstick	7.99	UNKNOWN	4.5	0
+85	Maybelline Lip Studio Color Blur 	maybelline	lipstick	lipstick	11.99	UNKNOWN	NA	9
+84	L'Oreal Color Riche Extraordinaire Lip Color	l'oreal	lipstick	lipstick	13.96	UNKNOWN	4	1
+83	Almay Smart Shade Butter Kiss Lipstick	almay	lipstick	lipstick	8.99	UNKNOWN	NA	12
+82	Wet n Wild Silk Finish Lipstick	wet n wild	lipstick	lipstick	1.99	UNKNOWN	5	3
+81	L'Oreal Paris Colour Riche Crystal Shine	l'oreal	lipstick	lipstick	10.99	UNKNOWN	5	1
+80	Dr. Hauschka Lipstick 	dr. hauschka	lipstick	lipstick	34	UNKNOWN	4.9	4
+79	Revlon Ultra HD Matte Lipcolor	revlon	lipstick	lipstick	10.99	UNKNOWN	5	3
+78	L'Oreal Infallible Lipstick 	l'oreal	lipstick	lipstick	13.99	UNKNOWN	5	14
+77	Revlon ColorStay Ultimate Suede Lipstick	revlon	lipstick	lipstick	14.49	UNKNOWN	3.3	19
+75	Revlon Ultra HD Lipstick	revlon	lipstick	lipstick	10.99	UNKNOWN	NA	18
+74	L'Oreal Paris Colour Riche Collection Exclusive Lip Colour 	l'oreal	lipstick	lipstick	10.99	UNKNOWN	4.7	6
+73	Maybelline Color Sensational The Buffs Lipcolour	maybelline	lipstick	lipstick	9.99	UNKNOWN	4.8	8
+72	Maybelline Color Sensational Vivids Lipcolour	maybelline	lipstick	lipstick	9.99	UNKNOWN	5	6
+71	Pacifica Devocean Natural Lipstick Deeply Devoted Creamy Color	pacifica	lipstick	lipstick	21	UNKNOWN	4.3	1
+70	Burt's Bees Lipstick 	burt's bees	lipstick	lipstick	9.99	UNKNOWN	3.7	14
+69	Maybelline Color Sensational Creamy Mattes Lipcolour 	maybelline	lipstick	lipstick	9.99	UNKNOWN	5	7
+68	L'Oreal Paris Colour Riche Lipstick	l'oreal	lipstick	lipstick	10.99	UNKNOWN	4.6	8
+67	Revlon Matte Lipstick	revlon	lipstick	lipstick	11.79	UNKNOWN	4.5	2
+66	Revlon ColorStay Ultimate Liquid Lipstick	revlon	lipstick	lipstick	14.49	UNKNOWN	4.1	7
+65	Maybelline Color Sensational Lipcolour	maybelline	lipstick	lipstick	9.99	UNKNOWN	4.2	5
+64	NYX Soft Matte Lip Cream	nyx	lipstick	lipstick	8.99	UNKNOWN	4.5	21
+62	Burt's Bees Lip Crayon	burt's bees	lipstick	lipstick	9.99	UNKNOWN	4.5	4
+61	e.l.f. Studio Matte Lip Color	e.l.f.	lipstick	lipstick	4.99	UNKNOWN	4.3	7
+60	Revlon Super Lustrous Lipstick	revlon	lipstick	lipstick	11.49	UNKNOWN	4.9	23
+59	Milani Color Statement Moisture Matte Lipstick	milani	lipstick	lipstick	6.99	UNKNOWN	4.7	14
+58	Milani Color Statement Lipstick	milani	lipstick	lipstick	6.99	UNKNOWN	4.4	32
+57	Revlon ColorBurst Matte Balm 	revlon	lipstick	lipstick	11.49	UNKNOWN	4.3	6
+56	e.l.f. Studio Moisturizing Lipstick	e.l.f.	lipstick	lipstick	4.99	UNKNOWN	4.1	6
+55	Pure Anada Petal Perfect Lipstick	pure anada	lipstick	lipstick	14	UNKNOWN	4.3	14
